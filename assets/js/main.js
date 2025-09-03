@@ -143,10 +143,10 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.style.cssText = `
         position: fixed;
-        bottom: 100px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
+        bottom: 80px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
         background: var(--primary-color);
         color: white;
         border: none;
@@ -157,20 +157,44 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: all 0.3s ease;
         z-index: 1000;
         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     `;
 
     document.body.appendChild(backToTopBtn);
 
-    // Mostrar/ocultar botão baseado no scroll
-    window.addEventListener('scroll', function() {
+    // Mostrar/ocultar botão baseado no scroll com responsividade
+    const updateBackToTopButton = () => {
+        const isMobile = window.innerWidth <= 768;
+        
         if (window.pageYOffset > 300) {
             backToTopBtn.style.opacity = '1';
             backToTopBtn.style.visibility = 'visible';
+            
+            // Ajustar posição para mobile
+            if (isMobile) {
+                backToTopBtn.style.bottom = '80px';
+                backToTopBtn.style.left = '15px';
+                backToTopBtn.style.width = '42px';
+                backToTopBtn.style.height = '42px';
+                backToTopBtn.style.fontSize = '14px';
+            } else {
+                backToTopBtn.style.bottom = '80px';
+                backToTopBtn.style.left = '20px';
+                backToTopBtn.style.width = '45px';
+                backToTopBtn.style.height = '45px';
+                backToTopBtn.style.fontSize = '16px';
+            }
         } else {
             backToTopBtn.style.opacity = '0';
             backToTopBtn.style.visibility = 'hidden';
         }
-    });
+    };
+    
+    window.addEventListener('scroll', updateBackToTopButton);
+    window.addEventListener('resize', updateBackToTopButton);
 
     // Ação do botão
     backToTopBtn.addEventListener('click', function() {
