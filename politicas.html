@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Moda Elegante">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2563eb">
+    <title>Políticas - Moda Elegante</title>
+    <meta name="description" content="Políticas de privacidade, troca e devolução - Moda Elegante">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- White Label Configuration -->
+    <script src="assets/js/config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">
+                <i class="fas fa-gem me-2"></i>Moda Elegante
+            </a>
+            
+            <div class="d-flex align-items-center d-lg-none">
+                <button class="cart-btn me-3" id="cartToggleMobile">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCountMobile">0</span>
+                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=feminino">Feminino</a></li>
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=masculino">Masculino</a></li>
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=acessorios">Acessórios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="sobre.html">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="pedidos.html">Meus Pedidos</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <button class="cart-btn d-none d-lg-block" id="cartToggle">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-5 mt-5 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Políticas</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-3">Políticas da Loja</h1>
+                    <p class="lead mb-0">Conheça nossos termos, políticas de troca, entrega e privacidade</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <i class="fas fa-shield-alt fa-5x opacity-25"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Políticas -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Menu Lateral -->
+                    <div class="policies-menu sticky-top" style="top: 100px;">
+                        <div class="list-group">
+                            <a href="#privacidade" class="list-group-item list-group-item-action active">
+                                <i class="fas fa-shield-alt me-2"></i>Privacidade
+                            </a>
+                            <a href="#trocas" class="list-group-item list-group-item-action">
+                                <i class="fas fa-undo me-2"></i>Trocas e Devoluções
+                            </a>
+                            <a href="#entrega" class="list-group-item list-group-item-action">
+                                <i class="fas fa-truck me-2"></i>Entrega
+                            </a>
+                            <a href="#pagamento" class="list-group-item list-group-item-action">
+                                <i class="fas fa-credit-card me-2"></i>Pagamento
+                            </a>
+                            <a href="#uso" class="list-group-item list-group-item-action">
+                                <i class="fas fa-file-contract me-2"></i>Termos de Uso
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-9">
+                    <!-- Política de Privacidade -->
+                    <section id="privacidade" class="policy-section mb-5">
+                        <h2 class="fw-bold mb-4">
+                            <i class="fas fa-shield-alt text-primary me-2"></i>Política de Privacidade
+                        </h2>
+                        
+                        <div class="policy-content">
+                            <h4>Coleta de Informações</h4>
+                            <p>Coletamos informações pessoais quando você:</p>
+                            <ul>
+                                <li>Cria uma conta em nosso site</li>
+                                <li>Realiza uma compra</li>
+                                <li>Assina nossa newsletter</li>
+                                <li>Entra em contato conosco</li>
+                            </ul>
+                            
+                            <h4>Uso das Informações</h4>
+                            <p>Utilizamos suas informações para:</p>
+                            <ul>
+                                <li>Processar pedidos e pagamentos</li>
+                                <li>Enviar confirmações e atualizações sobre pedidos</li>
+                                <li>Melhorar nossos produtos e serviços</li>
+                                <li>Enviar ofertas promocionais (com seu consentimento)</li>
+                            </ul>
+                            
+                            <h4>Proteção de Dados</h4>
+                            <p>
+                                Implementamos medidas de segurança adequadas para proteger suas informações 
+                                pessoais contra acesso não autorizado, alteração, divulgação ou destruição.
+                            </p>
+                            
+                            <h4>Compartilhamento de Informações</h4>
+                            <p>
+                                Não vendemos, trocamos ou transferimos suas informações pessoais para terceiros, 
+                                exceto quando necessário para completar uma transação ou cumprir a lei.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Política de Trocas -->
+                    <section id="trocas" class="policy-section mb-5">
+                        <h2 class="fw-bold mb-4">
+                            <i class="fas fa-undo text-primary me-2"></i>Política de Trocas e Devoluções
+                        </h2>
+                        
+                        <div class="policy-content">
+                            <h4>Prazo para Trocas</h4>
+                            <p>
+                                Você tem até <strong>30 dias</strong> a partir da data de recebimento 
+                                para solicitar a troca ou devolução de qualquer produto.
+                            </p>
+                            
+                            <h4>Condições para Troca</h4>
+                            <p>Para ser elegível para troca, o produto deve:</p>
+                            <ul>
+                                <li>Estar em condições originais</li>
+                                <li>Não ter sido usado ou lavado</li>
+                                <li>Manter todas as etiquetas originais</li>
+                                <li>Estar na embalagem original</li>
+                            </ul>
+                            
+                            <h4>Como Solicitar Troca</h4>
+                            <ol>
+                                <li>Entre em contato conosco via WhatsApp ou e-mail</li>
+                                <li>Informe o número do pedido e motivo da troca</li>
+                                <li>Aguarde as instruções de envio</li>
+                                <li>Envie o produto conforme orientações</li>
+                            </ol>
+                            
+                            <h4>Custos de Troca</h4>
+                            <p>
+                                <strong>Defeito de fabricação:</strong> Frete por nossa conta<br>
+                                <strong>Arrependimento:</strong> Frete por conta do cliente<br>
+                                <strong>Tamanho incorreto:</strong> Primeira troca grátis
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Política de Entrega -->
+                    <section id="entrega" class="policy-section mb-5">
+                        <h2 class="fw-bold mb-4">
+                            <i class="fas fa-truck text-primary me-2"></i>Política de Entrega
+                        </h2>
+                        
+                        <div class="policy-content">
+                            <h4>Prazos de Entrega</h4>
+                            <ul>
+                                <li><strong>Região Sudeste:</strong> 3 a 5 dias úteis</li>
+                                <li><strong>Região Sul:</strong> 4 a 6 dias úteis</li>
+                                <li><strong>Região Nordeste:</strong> 5 a 7 dias úteis</li>
+                                <li><strong>Região Norte/Centro-Oeste:</strong> 6 a 8 dias úteis</li>
+                            </ul>
+                            
+                            <h4>Frete Grátis</h4>
+                            <p>
+                                Oferecemos frete grátis para todo o Brasil em compras acima de R$ 200,00. 
+                                Para compras abaixo desse valor, o frete custa R$ 15,90.
+                            </p>
+                            
+                            <h4>Rastreamento</h4>
+                            <p>
+                                Após a confirmação do pagamento, você receberá um código de rastreamento 
+                                por e-mail para acompanhar sua entrega.
+                            </p>
+                            
+                            <h4>Problemas na Entrega</h4>
+                            <p>
+                                Em caso de problemas na entrega (produto danificado, extraviado ou não entregue), 
+                                entre em contato conosco imediatamente para resolvermos a situação.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Política de Pagamento -->
+                    <section id="pagamento" class="policy-section mb-5">
+                        <h2 class="fw-bold mb-4">
+                            <i class="fas fa-credit-card text-primary me-2"></i>Política de Pagamento
+                        </h2>
+                        
+                        <div class="policy-content">
+                            <h4>Formas de Pagamento Aceitas</h4>
+                            <ul>
+                                <li><strong>PIX:</strong> Aprovação imediata</li>
+                                <li><strong>Cartão de Crédito:</strong> Parcelamento em até 12x sem juros</li>
+                                <li><strong>Boleto Bancário:</strong> Vencimento em 3 dias úteis</li>
+                            </ul>
+                            
+                            <h4>Segurança</h4>
+                            <p>
+                                Todas as transações são processadas através de plataformas seguras 
+                                com certificação SSL. Não armazenamos dados de cartão de crédito.
+                            </p>
+                            
+                            <h4>Confirmação de Pagamento</h4>
+                            <ul>
+                                <li><strong>PIX:</strong> Confirmação imediata</li>
+                                <li><strong>Cartão:</strong> Confirmação em até 2 dias úteis</li>
+                                <li><strong>Boleto:</strong> Confirmação em até 3 dias úteis após pagamento</li>
+                            </ul>
+                            
+                            <h4>Cancelamento</h4>
+                            <p>
+                                Pedidos podem ser cancelados antes do envio. Após o envio, 
+                                seguimos nossa política de trocas e devoluções.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Termos de Uso -->
+                    <section id="uso" class="policy-section mb-5">
+                        <h2 class="fw-bold mb-4">
+                            <i class="fas fa-file-contract text-primary me-2"></i>Termos de Uso
+                        </h2>
+                        
+                        <div class="policy-content">
+                            <h4>Aceitação dos Termos</h4>
+                            <p>
+                                Ao utilizar nosso site, você concorda com estes termos de uso. 
+                                Se não concordar, não utilize nossos serviços.
+                            </p>
+                            
+                            <h4>Uso Permitido</h4>
+                            <p>Você pode usar nosso site para:</p>
+                            <ul>
+                                <li>Navegar e visualizar produtos</li>
+                                <li>Realizar compras legítimas</li>
+                                <li>Entrar em contato conosco</li>
+                            </ul>
+                            
+                            <h4>Uso Proibido</h4>
+                            <p>É proibido:</p>
+                            <ul>
+                                <li>Usar o site para atividades ilegais</li>
+                                <li>Tentar hackear ou comprometer a segurança</li>
+                                <li>Reproduzir conteúdo sem autorização</li>
+                                <li>Fazer uso comercial não autorizado</li>
+                            </ul>
+                            
+                            <h4>Propriedade Intelectual</h4>
+                            <p>
+                                Todo o conteúdo do site (textos, imagens, logos) é propriedade da 
+                                Moda Elegante e está protegido por direitos autorais.
+                            </p>
+                            
+                            <h4>Limitação de Responsabilidade</h4>
+                            <p>
+                                Não nos responsabilizamos por danos indiretos, incidentais ou 
+                                consequenciais decorrentes do uso do site.
+                            </p>
+                            
+                            <h4>Alterações nos Termos</h4>
+                            <p>
+                                Reservamos o direito de modificar estes termos a qualquer momento. 
+                                As alterações entram em vigor imediatamente após a publicação.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Contato -->
+                    <div class="alert alert-primary">
+                        <h5><i class="fas fa-info-circle me-2"></i>Dúvidas?</h5>
+                        <p class="mb-0">
+                            Se você tiver alguma dúvida sobre nossas políticas, entre em contato conosco:
+                            <br>
+                            <strong>E-mail:</strong> contato@modaelegante.com.br
+                            <br>
+                            <strong>WhatsApp:</strong> (11) 9999-8888
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h3 class="fw-bold mb-3">
+                        <i class="fas fa-gem me-2 text-primary"></i>Moda Elegante
+                    </h3>
+                    <p class="text-muted mb-4">
+                        Sua loja de roupas premium com as melhores peças para todas as ocasiões.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted text-decoration-none">Início</a></li>
+                        <li><a href="catalogo.html" class="text-muted text-decoration-none">Catálogo</a></li>
+                        <li><a href="sobre.html" class="text-muted text-decoration-none">Sobre</a></li>
+                        <li><a href="contato.html" class="text-muted text-decoration-none">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3">Categorias</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="catalogo.html?categoria=feminino" class="text-muted text-decoration-none">Feminino</a></li>
+                        <li><a href="catalogo.html?categoria=masculino" class="text-muted text-decoration-none">Masculino</a></li>
+                        <li><a href="catalogo.html?categoria=acessorios" class="text-muted text-decoration-none">Acessórios</a></li>
+                        <li><a href="politicas.html" class="text-muted text-decoration-none">Políticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3">Contato</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Av. Principal, 1234 - Centro</li>
+                        <li><i class="fas fa-phone me-2"></i>(11) 9999-8888</li>
+                        <li><i class="fas fa-envelope me-2"></i>contato@modaelegante.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Moda Elegante. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h5 class="fw-bold mb-0">Seu Carrinho</h5>
+            <button class="btn-close" id="cartClose"></button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total mb-3">
+                <strong>Total: <span id="cartTotal">R$ 0,00</span></strong>
+            </div>
+            <button class="btn btn-primary w-100 mb-2" id="checkoutBtn">
+                Finalizar Compra
+            </button>
+            <button class="btn btn-outline-secondary w-100" id="cartClose2">
+                Continuar Comprando
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Smooth scrolling para links internos
+        document.querySelectorAll('.list-group-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Atualizar item ativo
+                    document.querySelectorAll('.list-group-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

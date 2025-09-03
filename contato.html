@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Moda Elegante">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2563eb">
+    <title>Contato - Moda Elegante</title>
+    <meta name="description" content="Entre em contato conosco - Moda Elegante">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- White Label Configuration -->
+    <script src="assets/js/config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">
+                <i class="fas fa-gem me-2"></i>Moda Elegante
+            </a>
+            
+            <div class="d-flex align-items-center d-lg-none">
+                <button class="cart-btn me-3" id="cartToggleMobile">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCountMobile">0</span>
+                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=feminino">Feminino</a></li>
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=masculino">Masculino</a></li>
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=acessorios">Acessórios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="sobre.html">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="pedidos.html">Meus Pedidos</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <button class="cart-btn d-none d-lg-block" id="cartToggle">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-5 mt-5 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contato</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3">Entre em Contato</h1>
+                    <p class="lead">Estamos aqui para ajudar você. Entre em contato conosco através dos canais abaixo.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fas fa-headset fa-5x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Informações de Contato -->
+                <div class="col-lg-4 mb-5">
+                    <div class="contact-info">
+                        <h3 class="fw-bold mb-4">Informações de Contato</h3>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt text-primary fa-2x"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">Endereço</h5>
+                                    <p class="text-muted mb-0">Av. Principal, 1234<br>Centro - São Paulo, SP<br>CEP: 01234-567</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone text-primary fa-2x"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">Telefone</h5>
+                                    <p class="text-muted mb-0">(11) 9999-8888<br>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 14h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope text-primary fa-2x"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">E-mail</h5>
+                                    <p class="text-muted mb-0">contato@modaelegante.com.br<br>vendas@modaelegante.com.br</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon">
+                                    <i class="fab fa-whatsapp text-success fa-2x"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">WhatsApp</h5>
+                                    <p class="text-muted mb-0">(11) 9999-8888<br>Atendimento rápido</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links mt-4">
+                            <h5 class="fw-bold mb-3">Redes Sociais</h5>
+                            <a href="#" class="btn btn-outline-primary me-2 mb-2">
+                                <i class="fab fa-instagram me-2"></i>Instagram
+                            </a>
+                            <a href="#" class="btn btn-outline-primary me-2 mb-2">
+                                <i class="fab fa-facebook me-2"></i>Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Contato -->
+                <div class="col-lg-8">
+                    <div class="contact-form bg-light p-4 rounded">
+                        <h3 class="fw-bold mb-4">Envie sua Mensagem</h3>
+                        
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                        <label for="nome">Nome completo</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+                                        <label for="email">E-mail</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="telefone" placeholder="Telefone">
+                                        <label for="telefone">Telefone (opcional)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="assunto" required>
+                                            <option value="">Selecione o assunto</option>
+                                            <option value="duvida">Dúvida sobre produto</option>
+                                            <option value="pedido">Status do pedido</option>
+                                            <option value="troca">Troca/Devolução</option>
+                                            <option value="elogio">Elogio</option>
+                                            <option value="reclamacao">Reclamação</option>
+                                            <option value="outro">Outro</option>
+                                        </select>
+                                        <label for="assunto">Assunto</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="mensagem" placeholder="Mensagem" style="height: 150px" required></textarea>
+                                        <label for="mensagem">Sua mensagem</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="aceiteTermos" required>
+                                        <label class="form-check-label" for="aceiteTermos">
+                                            Aceito os <a href="politicas.html" target="_blank">termos de uso e política de privacidade</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold">Perguntas Frequentes</h2>
+                <p class="lead text-muted">Encontre respostas para as dúvidas mais comuns</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Como faço para trocar um produto?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Você tem até 30 dias para trocar qualquer produto. Entre em contato conosco pelo WhatsApp ou e-mail informando o número do pedido e o motivo da troca.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Qual o prazo de entrega?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    O prazo de entrega varia de 3 a 7 dias úteis para todo o Brasil. Você receberá o código de rastreamento por e-mail assim que o produto for despachado.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    O frete é grátis?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sim! Oferecemos frete grátis para todo o Brasil em compras acima de R$ 200,00. Para compras abaixo desse valor, o frete custa R$ 15,90.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Quais formas de pagamento vocês aceitam?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Aceitamos PIX, boleto bancário e cartão de crédito (parcelamento em até 12x sem juros). Todas as transações são 100% seguras.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    Como acompanho meu pedido?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Após a confirmação do pagamento, você receberá um e-mail com o código de rastreamento. Você pode acompanhar a entrega no site dos Correios ou entrar em contato conosco.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h3 class="fw-bold mb-3">
+                        <i class="fas fa-gem me-2 text-primary"></i>Moda Elegante
+                    </h3>
+                    <p class="text-muted mb-4">
+                        Sua loja de roupas premium com as melhores peças para todas as ocasiões.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted text-decoration-none">Início</a></li>
+                        <li><a href="catalogo.html" class="text-muted text-decoration-none">Catálogo</a></li>
+                        <li><a href="sobre.html" class="text-muted text-decoration-none">Sobre</a></li>
+                        <li><a href="contato.html" class="text-muted text-decoration-none">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3">Categorias</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="catalogo.html?categoria=feminino" class="text-muted text-decoration-none">Feminino</a></li>
+                        <li><a href="catalogo.html?categoria=masculino" class="text-muted text-decoration-none">Masculino</a></li>
+                        <li><a href="catalogo.html?categoria=acessorios" class="text-muted text-decoration-none">Acessórios</a></li>
+                        <li><a href="politicas.html" class="text-muted text-decoration-none">Políticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3">Contato</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Av. Principal, 1234 - Centro</li>
+                        <li><i class="fas fa-phone me-2"></i>(11) 9999-8888</li>
+                        <li><i class="fas fa-envelope me-2"></i>contato@modaelegante.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Moda Elegante. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h5 class="fw-bold mb-0">Seu Carrinho</h5>
+            <button class="btn-close" id="cartClose"></button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total mb-3">
+                <strong>Total: <span id="cartTotal">R$ 0,00</span></strong>
+            </div>
+            <button class="btn btn-primary w-100 mb-2" id="checkoutBtn">
+                Finalizar Compra
+            </button>
+            <button class="btn btn-outline-secondary w-100" id="cartClose2">
+                Continuar Comprando
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511999998888?text=Olá,%20gostaria%20de%20informações%20sobre%20os%20produtos." 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check me-2"></i>Enviado!';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-primary');
+                    btn.disabled = false;
+                    this.reset();
+                }, 3000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

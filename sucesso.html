@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Moda Elegante">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2563eb">
+    <title>Pedido Confirmado - Moda Elegante</title>
+    <meta name="description" content="Seu pedido foi confirmado com sucesso - Moda Elegante">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">
+                <i class="fas fa-gem me-2"></i>Moda Elegante
+            </a>
+        </div>
+    </nav>
+
+    <!-- Success Content -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <!-- Success Icon -->
+                    <div class="success-icon mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+                    </div>
+                    
+                    <h1 class="display-5 fw-bold text-success mb-3">Pedido Confirmado!</h1>
+                    <p class="lead text-muted mb-4">
+                        Obrigado por sua compra! Seu pedido foi processado com sucesso.
+                    </p>
+                    
+                    <!-- Order Details -->
+                    <div class="order-success-details bg-light p-4 rounded mb-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <i class="fas fa-shopping-bag text-primary me-2"></i>
+                                    <strong>Número do Pedido:</strong>
+                                    <span id="orderNumber">#00000</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <i class="fas fa-credit-card text-primary me-2"></i>
+                                    <strong>Forma de Pagamento:</strong>
+                                    <span id="paymentMethod">PIX</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Instructions -->
+                    <div id="paymentInstructions" class="alert alert-info">
+                        <!-- Instruções serão inseridas via JavaScript -->
+                    </div>
+                    
+                    <!-- Next Steps -->
+                    <div class="d-flex align-items-center">
+                        <button class="cart-btn" id="cartToggle">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </button>
+                    </div>
+                    
+                    <div class="next-steps mb-5">
+                        <h3 class="fw-bold mb-4">Próximos Passos</h3>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="step-item">
+                                    <div class="step-icon mb-3">
+                                        <i class="fas fa-envelope text-primary fa-2x"></i>
+                                    </div>
+                                    <h5 class="fw-bold">1. Confirmação por E-mail</h5>
+                                    <p class="text-muted">
+                                        Você receberá um e-mail com todos os detalhes do seu pedido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="step-item">
+                                    <div class="step-icon mb-3">
+                                        <i class="fas fa-box text-primary fa-2x"></i>
+                                    </div>
+                                    <h5 class="fw-bold">2. Preparação</h5>
+                                    <p class="text-muted">
+                                        Seus produtos serão separados e embalados com cuidado.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="step-item">
+                                    <div class="step-icon mb-3">
+                                        <i class="fas fa-truck text-primary fa-2x"></i>
+                                    </div>
+                                    <h5 class="fw-bold">3. Entrega</h5>
+                                    <p class="text-muted">
+                                        Você receberá o código de rastreamento para acompanhar a entrega.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <a href="catalogo.html" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-shopping-bag me-2"></i>Continuar Comprando
+                        </a>
+                        <a href="contato.html" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-headset me-2"></i>Fale Conosco
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Info -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="info-card text-center p-4 bg-white rounded shadow-sm h-100">
+                        <i class="fas fa-undo text-primary fa-2x mb-3"></i>
+                        <h5 class="fw-bold mb-2">Troca Fácil</h5>
+                        <p class="text-muted mb-0">
+                            30 dias para trocar qualquer produto. Processo simples e rápido.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="info-card text-center p-4 bg-white rounded shadow-sm h-100">
+                        <i class="fas fa-shipping-fast text-primary fa-2x mb-3"></i>
+                        <h5 class="fw-bold mb-2">Entrega Rápida</h5>
+                        <p class="text-muted mb-0">
+                            Entregamos em todo o Brasil. Prazo de 3 a 7 dias úteis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="info-card text-center p-4 bg-white rounded shadow-sm h-100">
+                        <i class="fas fa-headset text-primary fa-2x mb-3"></i>
+                        <h5 class="fw-bold mb-2">Suporte 24h</h5>
+                        <p class="text-muted mb-0">
+                            Nossa equipe está sempre disponível para ajudar você.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="text-center">
+                <h3 class="fw-bold mb-3">
+                    <i class="fas fa-gem me-2 text-primary"></i>Moda Elegante
+                </h3>
+                <p class="text-muted">&copy; 2024 Moda Elegante. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511999998888?text=Olá,%20acabei%20de%20fazer%20um%20pedido%20e%20gostaria%20de%20mais%20informações." 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obter parâmetros da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const pedidoId = urlParams.get('pedido') || Math.floor(Math.random() * 100000);
+            const formaPagamento = urlParams.get('pagamento') || 'pix';
+            
+            // Atualizar número do pedido
+            document.getElementById('orderNumber').textContent = `#${pedidoId}`;
+            
+            // Atualizar forma de pagamento e instruções
+            const paymentMethodElement = document.getElementById('paymentMethod');
+            const paymentInstructionsElement = document.getElementById('paymentInstructions');
+            
+            switch(formaPagamento) {
+                case 'pix':
+                    paymentMethodElement.textContent = 'PIX';
+                    paymentInstructionsElement.innerHTML = `
+                        <h5><i class="fas fa-qrcode me-2"></i>Pagamento via PIX</h5>
+                        <p class="mb-0">
+                            Seu pagamento foi processado com sucesso! O pedido será preparado e enviado em breve.
+                        </p>
+                    `;
+                    break;
+                    
+                case 'boleto':
+                    paymentMethodElement.textContent = 'Boleto Bancário';
+                    paymentInstructionsElement.innerHTML = `
+                        <h5><i class="fas fa-barcode me-2"></i>Pagamento via Boleto</h5>
+                        <p class="mb-0">
+                            O boleto foi enviado para seu e-mail. O pedido será processado após a confirmação do pagamento (até 3 dias úteis).
+                        </p>
+                    `;
+                    break;
+                    
+                case 'cartao':
+                    paymentMethodElement.textContent = 'Cartão de Crédito';
+                    paymentInstructionsElement.innerHTML = `
+                        <h5><i class="fas fa-credit-card me-2"></i>Pagamento via Cartão</h5>
+                        <p class="mb-0">
+                            Seu pagamento está sendo processado. Você receberá uma confirmação em breve por e-mail.
+                        </p>
+                    `;
+                    break;
+            }
+            
+            // Animação de entrada
+            setTimeout(() => {
+                document.querySelector('.success-icon i').style.animation = 'bounce 1s ease-in-out';
+            }, 500);
+        });
+        
+        // Adicionar animação CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 20%, 60%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-20px);
+                }
+                80% {
+                    transform: translateY(-10px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

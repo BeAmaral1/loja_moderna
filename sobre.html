@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Moda Elegante">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2563eb">
+    <title>Sobre - Moda Elegante</title>
+    <meta name="description" content="Conheça a história da Moda Elegante - Sua loja de roupas premium">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- White Label Configuration -->
+    <script src="assets/js/config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">
+                <i class="fas fa-gem me-2"></i>Moda Elegante
+            </a>
+            
+            <div class="d-flex align-items-center d-lg-none">
+                <button class="cart-btn me-3" id="cartToggleMobile">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCountMobile">0</span>
+                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=feminino">Feminino</a></li>
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=masculino">Masculino</a></li>
+                            <li><a class="dropdown-item" href="catalogo.html?categoria=acessorios">Acessórios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium" href="sobre.html">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="pedidos.html">Meus Pedidos</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <button class="cart-btn d-none d-lg-block" id="cartToggle">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-5 mt-5 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Sobre</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3">Nossa História</h1>
+                    <p class="lead">Conheça a trajetória da Moda Elegante e nosso compromisso com a qualidade e estilo.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fas fa-heart fa-5x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Nossa loja" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-bold mb-4">Quem Somos</h2>
+                    <p class="lead text-muted mb-4">
+                        A Moda Elegante nasceu em 2020 com o sonho de democratizar a moda de qualidade, 
+                        oferecendo peças elegantes e acessíveis para todos os estilos e ocasiões.
+                    </p>
+                    <p class="mb-4">
+                        Nossa equipe é formada por profissionais apaixonados por moda que trabalham 
+                        incansavelmente para selecionar as melhores peças, sempre priorizando a 
+                        qualidade dos tecidos, o conforto e as tendências atuais.
+                    </p>
+                    <p class="mb-4">
+                        Acreditamos que a moda é uma forma de expressão pessoal e que cada pessoa 
+                        merece se sentir confiante e elegante, independentemente do seu estilo ou orçamento.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold">Nossos Valores</h2>
+                <p class="lead text-muted">Os princípios que guiam nosso trabalho</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="value-card text-center p-4 bg-white rounded shadow-sm h-100">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-star text-primary fa-3x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Qualidade</h4>
+                        <p class="text-muted">
+                            Selecionamos cuidadosamente cada peça, garantindo materiais de alta qualidade 
+                            e acabamento impecável em todos os nossos produtos.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="value-card text-center p-4 bg-white rounded shadow-sm h-100">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-heart text-primary fa-3x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Atendimento</h4>
+                        <p class="text-muted">
+                            Nosso time está sempre pronto para oferecer um atendimento personalizado 
+                            e humanizado, porque cada cliente é único e especial.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="value-card text-center p-4 bg-white rounded shadow-sm h-100">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-leaf text-primary fa-3x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Sustentabilidade</h4>
+                        <p class="text-muted">
+                            Nos comprometemos com práticas sustentáveis, desde a escolha dos fornecedores 
+                            até o packaging eco-friendly de nossos produtos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <h2 class="display-4 fw-bold text-primary mb-2">5000+</h2>
+                        <p class="text-muted">Clientes Satisfeitos</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <h2 class="display-4 fw-bold text-primary mb-2">500+</h2>
+                        <p class="text-muted">Produtos Disponíveis</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <h2 class="display-4 fw-bold text-primary mb-2">4.9</h2>
+                        <p class="text-muted">Avaliação Média</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <h2 class="display-4 fw-bold text-primary mb-2">24h</h2>
+                        <p class="text-muted">Suporte Online</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missão, Visão e Valores -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="mvv-card p-4 bg-white rounded shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-bullseye text-primary fa-2x me-3"></i>
+                            <h3 class="fw-bold mb-0">Missão</h3>
+                        </div>
+                        <p class="text-muted">
+                            Proporcionar uma experiência de compra excepcional, oferecendo roupas de 
+                            qualidade que fazem nossos clientes se sentirem confiantes e elegantes.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="mvv-card p-4 bg-white rounded shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-eye text-primary fa-2x me-3"></i>
+                            <h3 class="fw-bold mb-0">Visão</h3>
+                        </div>
+                        <p class="text-muted">
+                            Ser reconhecida como a principal referência em moda online no Brasil, 
+                            conhecida pela qualidade, variedade e excelência no atendimento.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="mvv-card p-4 bg-white rounded shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-handshake text-primary fa-2x me-3"></i>
+                            <h3 class="fw-bold mb-0">Compromisso</h3>
+                        </div>
+                        <p class="text-muted">
+                            Manter sempre a transparência, honestidade e respeito em todas as nossas 
+                            relações, priorizando a satisfação e confiança dos nossos clientes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold">Por que Escolher a Moda Elegante?</h2>
+                <p class="lead text-muted">Vantagens exclusivas para você</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="feature-item d-flex align-items-start mb-4">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-shipping-fast text-primary fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Entrega Rápida</h5>
+                            <p class="text-muted mb-0">
+                                Entregamos em todo o Brasil com frete grátis acima de R$ 200. 
+                                Prazo de 3 a 7 dias úteis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="feature-item d-flex align-items-start mb-4">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-undo text-primary fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Troca Garantida</h5>
+                            <p class="text-muted mb-0">
+                                30 dias para trocar qualquer produto. Processo simples e sem burocracias.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="feature-item d-flex align-items-start mb-4">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-shield-alt text-primary fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Compra Segura</h5>
+                            <p class="text-muted mb-0">
+                                Site 100% seguro com certificado SSL. Seus dados estão protegidos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="feature-item d-flex align-items-start mb-4">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-headset text-primary fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Suporte Especializado</h5>
+                            <p class="text-muted mb-0">
+                                Atendimento personalizado via WhatsApp, e-mail ou telefone.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white text-center">
+        <div class="container">
+            <h2 class="display-6 fw-bold mb-3">Pronto para Renovar seu Guarda-Roupa?</h2>
+            <p class="lead mb-4">Descubra nossa coleção completa e encontre as peças perfeitas para você</p>
+            <a href="catalogo.html" class="btn btn-light btn-lg text-primary fw-bold">
+                <i class="fas fa-shopping-bag me-2"></i>Explorar Catálogo
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h3 class="fw-bold mb-3">
+                        <i class="fas fa-gem me-2 text-primary"></i>Moda Elegante
+                    </h3>
+                    <p class="text-muted mb-4">
+                        Sua loja de roupas premium com as melhores peças para todas as ocasiões.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted text-decoration-none">Início</a></li>
+                        <li><a href="catalogo.html" class="text-muted text-decoration-none">Catálogo</a></li>
+                        <li><a href="sobre.html" class="text-muted text-decoration-none">Sobre</a></li>
+                        <li><a href="contato.html" class="text-muted text-decoration-none">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3">Categorias</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="catalogo.html?categoria=feminino" class="text-muted text-decoration-none">Feminino</a></li>
+                        <li><a href="catalogo.html?categoria=masculino" class="text-muted text-decoration-none">Masculino</a></li>
+                        <li><a href="catalogo.html?categoria=acessorios" class="text-muted text-decoration-none">Acessórios</a></li>
+                        <li><a href="politicas.html" class="text-muted text-decoration-none">Políticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3">Contato</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Av. Principal, 1234 - Centro</li>
+                        <li><i class="fas fa-phone me-2"></i>(11) 9999-8888</li>
+                        <li><i class="fas fa-envelope me-2"></i>contato@modaelegante.com.br</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Moda Elegante. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h5 class="fw-bold mb-0">Seu Carrinho</h5>
+            <button class="btn-close" id="cartClose"></button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total mb-3">
+                <strong>Total: <span id="cartTotal">R$ 0,00</span></strong>
+            </div>
+            <button class="btn btn-primary w-100 mb-2" id="checkoutBtn">
+                Finalizar Compra
+            </button>
+            <button class="btn btn-outline-secondary w-100" id="cartClose2">
+                Continuar Comprando
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511999998888?text=Olá,%20gostaria%20de%20informações%20sobre%20os%20produtos." 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
