@@ -2,7 +2,7 @@
 
 ## 🚀 Solução Completa para Revenda
 
-Este sistema foi desenvolvido especificamente para **venda B2B**, permitindo customização instantânea para diferentes clientes e nichos de mercado.
+Este sistema foi desenvolvido especificamente para **venda B2B**, permitindo customização instantânea para diferentes clientes e nichos de mercado. Otimizado para dispositivos móveis com navbar centralizada e dropdown premium.
 
 ## ⚡ Customização em 5 Minutos
 
@@ -52,21 +52,23 @@ cp demo-configs/esportivo-moderno.js assets/js/config.js
 ## 💰 Modelo de Negócio
 
 ### Pacotes Sugeridos:
-- **Básico**: R$ 1.500 (até 50 produtos)
-- **Profissional**: R$ 3.500 (até 200 produtos)  
-- **Enterprise**: R$ 6.500 (ilimitado)
+- **Básico**: R$ 1.800 (até 50 produtos + responsividade)
+- **Profissional**: R$ 4.200 (até 200 produtos + mobile otimizado)  
+- **Enterprise**: R$ 7.800 (ilimitado + UX premium)
 
 ### Margem de Revenda: 60-80%
 
 ## 🛠️ Recursos Técnicos
 
-- ✅ Bootstrap 5 responsivo
-- ✅ JavaScript modular
-- ✅ CSS customizável via variáveis
+- ✅ Bootstrap 5 responsivo (iPhone SE, tablets, desktop)
+- ✅ JavaScript modular com verificações de existência
+- ✅ CSS customizável via variáveis + breakpoint 375px
 - ✅ Sistema de produtos dinâmico
-- ✅ Carrinho funcional
-- ✅ WhatsApp integrado
-- ✅ SEO otimizado
+- ✅ Carrinho funcional com sidebar responsiva
+- ✅ Navbar centralizada com dropdown premium
+- ✅ Carrossel touch/swipe habilitado
+- ✅ WhatsApp integrado com safe-area
+- ✅ SEO otimizado com viewport padronizado
 
 ## 📱 Suporte Incluso
 

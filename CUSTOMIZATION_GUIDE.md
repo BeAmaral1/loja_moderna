@@ -1,7 +1,7 @@
 # 🎨 Guia de Customização White Label
 
 ## 📋 Visão Geral
-Este sistema foi projetado para ser facilmente customizável para diferentes clientes e marcas. Todas as configurações estão centralizadas no arquivo `assets/js/config.js`.
+Este sistema foi projetado para ser facilmente customizável para diferentes clientes e marcas. Sistema otimizado para dispositivos móveis com breakpoints específicos e navbar centralizada premium. Todas as configurações estão centralizadas no arquivo `assets/js/config.js`.
 
 ## 🚀 Customização Rápida (5 minutos)
 
@@ -43,6 +43,11 @@ brand: { name: "Bella Moda", tagline: "Elegância Feminina" },
 theme: { 
     primary: "#ec4899",     // Rosa
     accent: "#f59e0b"       // Dourado
+},
+features: {
+    responsiveOptimized: true,
+    touchSwipeEnabled: true,
+    premiumDropdown: true
 }
 ```
 
@@ -150,29 +155,38 @@ sales: {
 - [ ] Definir categorias relevantes
 - [ ] Configurar métodos de pagamento
 - [ ] Adicionar Google Analytics
-- [ ] Testar responsividade
+- [ ] Testar responsividade em iPhone SE (375px)
+- [ ] Verificar navbar centralizada
+- [ ] Testar dropdown de categorias
+- [ ] Validar carrossel touch/swipe
 - [ ] Verificar todos os links
+- [ ] Testar carrinho sidebar em mobile
 
 ## 💼 Pacotes de Venda Sugeridos
 
-### 🥉 Básico - R$ 1.000
+### 🥉 Básico - R$ 1.200
 - Customização de cores e marca
 - Até 50 produtos
+- Responsividade otimizada
+- Navbar centralizada
 - Suporte por 30 dias
 
-### 🥈 Profissional - R$ 2.500
+### 🥈 Profissional - R$ 3.000
 - Tudo do básico +
 - Até 200 produtos
 - Integração com redes sociais
 - Google Analytics configurado
+- Otimizações para iPhone SE
+- Dropdown premium
 - Suporte por 90 dias
 
-### 🥇 Premium - R$ 5.000
+### 🥇 Premium - R$ 6.000
 - Tudo do profissional +
 - Produtos ilimitados
 - Integração com gateway de pagamento
 - Sistema de cupons
 - Painel administrativo
+- Monitoramento UX mobile
 - Suporte por 1 ano
 
 ## 📞 Suporte Técnico

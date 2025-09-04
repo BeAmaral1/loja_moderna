@@ -9,18 +9,20 @@ Sistema de e-commerce **100% customizável** em apenas **5 minutos**, permitindo
 
 ## 📦 Pacotes Comerciais
 
-### 🥉 **STARTER** - R$ 1.500
+### 🥉 **STARTER** - R$ 1.800
 **Ideal para pequenas lojas iniciantes**
 - ✅ Customização completa de cores e marca
 - ✅ Até 50 produtos
 - ✅ 3 categorias personalizáveis
 - ✅ WhatsApp Business integrado
-- ✅ Responsivo (mobile/tablet/desktop)
+- ✅ Totalmente responsivo (iPhone SE, tablets, desktop)
+- ✅ Navbar centralizada com dropdown premium
+- ✅ Carrossel touch/swipe habilitado
 - ✅ Suporte técnico por 30 dias
 - ✅ Manual de customização
 - ⏱️ **Entrega: 24 horas**
 
-### 🥈 **PROFESSIONAL** - R$ 3.500
+### 🥈 **PROFESSIONAL** - R$ 4.200
 **Para lojas em crescimento**
 - ✅ Tudo do pacote Starter +
 - ✅ Até 200 produtos
@@ -29,21 +31,25 @@ Sistema de e-commerce **100% customizável** em apenas **5 minutos**, permitindo
 - ✅ Facebook Pixel integrado
 - ✅ Sistema de cupons de desconto
 - ✅ Integração com redes sociais
-- ✅ SEO otimizado
+- ✅ SEO otimizado com viewport padronizado
+- ✅ Otimizações específicas para mobile (375px)
+- ✅ Safe area para iOS
 - ✅ Suporte técnico por 90 dias
 - ⏱️ **Entrega: 48 horas**
 
-### 🥇 **ENTERPRISE** - R$ 6.500
+### 🥇 **ENTERPRISE** - R$ 7.800
 **Para grandes operações**
 - ✅ Tudo do pacote Professional +
 - ✅ Produtos ilimitados
 - ✅ Painel administrativo completo
 - ✅ Integração com gateway de pagamento
 - ✅ Sistema de estoque
-- ✅ Relatórios de vendas
+- ✅ Relatórios de vendas e UX
 - ✅ Multi-usuários (vendedores)
 - ✅ API personalizada
 - ✅ Backup automático
+- ✅ Monitoramento de performance mobile
+- ✅ Atualizações de responsividade contínuas
 - ✅ Suporte técnico por 1 ano
 - ⏱️ **Entrega: 72 horas**
 

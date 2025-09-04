@@ -1,6 +1,6 @@
 # 🛍️ Moda Elegante - Loja de Roupas Online
 
-Uma loja de roupas online moderna, responsiva e profissional, desenvolvida com Bootstrap 5 e JavaScript vanilla. Pronta para comercialização e fácil manutenção.
+Uma loja de roupas online moderna, responsiva e profissional, desenvolvida com Bootstrap 5 e JavaScript vanilla. Sistema otimizado para dispositivos móveis com breakpoints específicos para iPhone SE (375px) e outras telas pequenas.
 
 ## 📋 Características
 
@@ -13,17 +13,20 @@ Uma loja de roupas online moderna, responsiva e profissional, desenvolvida com B
 ### 🛒 Funcionalidades de E-commerce
 - **Catálogo Completo**: Sistema de filtros eficiente por categoria, preço e tamanho
 - **Páginas de Produto**: Galeria de imagens, descrições detalhadas e seleção de variações
-- **Carrinho de Compras**: Sidebar com funcionalidades completas
+- **Carrinho de Compras**: Sidebar responsiva com funcionalidades completas
+- **Navbar Centralizada**: Menu centralizado com dropdown premium para categorias
 - **Checkout Simplificado**: Formulário otimizado sem integração de pagamento
 - **Sistema de Busca**: Busca em tempo real por produtos
+- **WhatsApp Float**: Botão flutuante otimizado para mobile
 
 ### 📄 Páginas Institucionais
-- **Homepage**: Banner principal com produtos em destaque
+- **Homepage**: Banner principal com carrossel touch/swipe e produtos em destaque
 - **Catálogo**: Listagem completa com filtros avançados
 - **Produto Individual**: Detalhes completos com galeria
 - **Sobre Nós**: História e valores da empresa
 - **Contato**: Formulário e informações de contato
 - **Políticas**: Termos de uso, privacidade e trocas
+- **Pedidos**: Acompanhamento de pedidos
 - **Checkout**: Processo de finalização de compra
 - **Sucesso**: Confirmação de pedido
 
@@ -64,9 +67,11 @@ loja_moderna/
 ## 📱 Responsividade
 
 O site é totalmente responsivo e otimizado para:
-- **Desktop**: 1200px+
-- **Tablet**: 768px - 1199px
-- **Mobile**: 320px - 767px
+- **Desktop**: 1200px+ (navbar centralizada, carrinho visível)
+- **Tablet**: 768px - 1199px (layout adaptativo)
+- **Mobile**: 320px - 767px (otimizado para toque)
+- **iPhone SE/Mini**: 375px (breakpoint específico)
+- **Viewport dinâmico**: 100dvh/100svh para hero e sidebar
 
 ## 🔧 Instalação e Uso
 
@@ -127,6 +132,7 @@ const produtos = [
 - Controle de quantidade
 - Cálculo automático de totais
 - Persistência entre sessões
+- Sidebar responsiva com z-index otimizado
 
 ### Sistema de Filtros
 - Filtro por categoria
@@ -135,11 +141,15 @@ const produtos = [
 - Ordenação (nome, preço, avaliação)
 - Busca por texto
 
-### Performance
+### Performance e UX
 - Lazy loading de imagens
 - Código otimizado e minificado
 - Carregamento assíncrono
 - Animações com CSS3
+- Navbar com dropdown premium (hover desktop, click mobile)
+- Carrossel touch/swipe habilitado
+- Safe area para iOS (env(safe-area-inset))
+- Viewport dinâmico (100dvh/100svh)
 
 ## 🔒 Segurança
 
@@ -151,11 +161,14 @@ const produtos = [
 ## 📈 SEO e Acessibilidade
 
 - Meta tags otimizadas
+- Viewport padronizado (sem user-scalable=no)
 - Estrutura semântica HTML5
 - Alt text em imagens
 - Navegação por teclado
 - Contraste adequado
 - Schema markup ready
+- ARIA labels em botões interativos
+- Focus trap no carrinho sidebar
 
 ## 🎯 Valor Comercial
 
@@ -173,21 +186,23 @@ const produtos = [
 - Portfólios de produtos
 - Landing pages comerciais
 
-## 💰 Plano de Manutenção (R$ 100/mês)
+## 💰 Plano de Manutenção (R$ 150/mês)
 
 ### Serviços Inclusos
-- Atualização de produtos (até 20 produtos/mês)
-- Ajustes de layout e cores
-- Backup mensal
-- Monitoramento de performance
-- Correções de bugs
+- Atualização de produtos (até 30 produtos/mês)
+- Ajustes de layout, cores e responsividade
+- Backup mensal automatizado
+- Monitoramento de performance mobile
+- Correções de bugs e otimizações
 - Suporte técnico via WhatsApp/email
-- Relatório mensal de métricas
+- Relatório mensal de métricas e UX
+- Atualizações de segurança
 
 ### Atualizações Rápidas
 - Alteração de preços: 5 minutos
 - Adição de produtos: 10 minutos
 - Mudança de cores/layout: 15 minutos
+- Ajustes de responsividade: 20 minutos
 - Atualização de textos: 5 minutos
 
 ## 📞 Suporte
