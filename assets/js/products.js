@@ -183,24 +183,28 @@ function renderizarProduto(produto) {
                     <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">${produto.nome}</h3>
-                    <div class="product-price">
-                        ${formatarPreco(produto.preco)}
-                        ${produto.precoOriginal ? `<span class="product-price-original">${formatarPreco(produto.precoOriginal)}</span>` : ''}
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="stars text-warning">
-                            ${gerarEstrelas(produto.rating)}
+                    <div class="product-content">
+                        <h3 class="product-title">${produto.nome}</h3>
+                        <div class="product-price">
+                            ${formatarPreco(produto.preco)}
+                            ${produto.precoOriginal ? `<span class="product-price-original">${formatarPreco(produto.precoOriginal)}</span>` : ''}
                         </div>
-                        <small class="text-muted">(${produto.reviews})</small>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="stars text-warning">
+                                ${gerarEstrelas(produto.rating)}
+                            </div>
+                            <small class="text-muted">(${produto.reviews})</small>
+                        </div>
                     </div>
-                    <div class="d-grid gap-2">
-                        <button class="btn-add-cart" onclick="adicionarAoCarrinho(${produto.id})">
-                            <i class="fas fa-shopping-bag me-2"></i>Adicionar
-                        </button>
-                        <a href="produto.html?id=${produto.id}" class="btn btn-outline-primary btn-sm">
-                            Ver Detalhes
-                        </a>
+                    <div class="product-actions">
+                        <div class="d-grid gap-2">
+                            <button class="btn-add-cart" onclick="adicionarAoCarrinho(${produto.id})">
+                                <i class="fas fa-shopping-bag me-2"></i>Adicionar
+                            </button>
+                            <a href="produto.html?id=${produto.id}" class="btn btn-outline-primary btn-sm">
+                                Ver Detalhes
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
