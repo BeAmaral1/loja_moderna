@@ -2,15 +2,25 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Moda Elegante">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#2563eb">
     <link rel="manifest" href="manifest.json">
-    <title>Moda Elegante - Loja de Roupas Femininas</title>
-    <meta name="description" content="Descubra as melhores roupas femininas e masculinas. Frete grátis para todo Brasil em compras acima de R$ 200,00.">
+    <title>Moda Elegante - Loja de Roupas Online | Feminino e Masculino</title>
+    <meta name="description" content="Loja de roupas online com as melhores peças femininas e masculinas. Frete grátis acima de R$ 200. Entrega rápida para todo Brasil. Qualidade e estilo garantidos.">
+    <meta name="keywords" content="roupas femininas, roupas masculinas, moda online, loja virtual, roupas de qualidade, frete grátis">
+    <meta name="author" content="Moda Elegante">
+    <meta property="og:title" content="Moda Elegante - Loja de Roupas Online">
+    <meta property="og:description" content="Descubra as melhores roupas femininas e masculinas com frete grátis acima de R$ 200">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://modaelegante.com.br">
+    <meta property="og:image" content="https://modaelegante.com.br/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Moda Elegante - Loja de Roupas Online">
+    <meta name="twitter:description" content="Roupas femininas e masculinas de qualidade com frete grátis">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -22,6 +32,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
@@ -39,11 +51,11 @@
             </a>
             
             <div class="d-flex align-items-center d-lg-none">
-                <button class="cart-btn me-3" id="cartToggleMobile">
-                    <i class="fas fa-shopping-bag"></i>
+                <button class="cart-btn me-3" id="cartToggleMobile" aria-label="Abrir carrinho de compras">
+                    <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                     <span class="cart-count" id="cartCountMobile">0</span>
                 </button>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -57,7 +69,7 @@
                         <a class="nav-link fw-medium" href="catalogo.html">Catálogo</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" data-bs-offset="0,8">
                             Categorias
                         </a>
                         <ul class="dropdown-menu">
@@ -76,10 +88,10 @@
                         <a class="nav-link fw-medium" href="pedidos.html">Meus Pedidos</a>
                     </li>
                 </ul>
-                
-                <div class="d-flex align-items-center">
-                    <button class="cart-btn d-none d-lg-block" id="cartToggle">
-                        <i class="fas fa-shopping-bag"></i>
+                <!-- Botão Carrinho (desktop) -->
+                <div class="d-none d-lg-flex align-items-center ms-lg-3">
+                    <button class="cart-btn" id="cartToggle" aria-label="Abrir carrinho de compras">
+                        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                         <span class="cart-count" id="cartCount">0</span>
                     </button>
                 </div>
@@ -112,8 +124,33 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Coleção Verão 2024" class="img-fluid rounded-4 shadow-lg">
+                        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
+                                         alt="Coleção Verão 2024" class="img-fluid">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
+                                         alt="Moda Feminina" class="img-fluid">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
+                                         alt="Moda Masculina" class="img-fluid">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
+                                         alt="Acessórios" class="img-fluid">
+                                </div>
+                            </div>
+                            <!-- Indicadores -->
+                            <div class="carousel-indicators m-0">
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -213,7 +250,8 @@
                         <div class="input-group input-group-lg">
                             <input type="email" class="form-control" placeholder="Seu melhor e-mail" required>
                             <button class="btn btn-light text-primary fw-bold" type="submit">
-                                Assinar Newsletter
+                                <span class="d-none d-sm-inline">Assinar Newsletter</span>
+                                <span class="d-sm-none">Assinar</span>
                             </button>
                         </div>
                     </form>
@@ -227,21 +265,27 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <h3 class="fw-bold mb-3">
+                    <h4 class="fw-bold mb-3">
                         <i class="fas fa-gem me-2 text-primary"></i>Moda Elegante
-                    </h3>
+                    </h4>
                     <p class="text-muted mb-4">
                         Sua loja de roupas premium com as melhores peças para todas as ocasiões.
                     </p>
-                    <div class="social-links">
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    <div class="social-links d-flex gap-3">
+                        <a href="#" class="text-white" aria-label="Seguir no Instagram">
+                            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-white" aria-label="Seguir no Facebook">
+                            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-white" aria-label="Contato via WhatsApp">
+                            <i class="fab fa-whatsapp fa-lg" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="col-lg-2">
-                    <h5 class="fw-bold mb-3">Links</h5>
+                    <h5 class="fw-bold mb-3">Navegação</h5>
                     <ul class="list-unstyled">
                         <li><a href="index.html" class="text-muted text-decoration-none">Início</a></li>
                         <li><a href="catalogo.html" class="text-muted text-decoration-none">Catálogo</a></li>
@@ -251,7 +295,7 @@
                 </div>
                 
                 <div class="col-lg-3">
-                    <h5 class="fw-bold mb-3">Categorias</h5>
+                    <h5 class="fw-bold mb-3">Produtos</h5>
                     <ul class="list-unstyled">
                         <li><a href="catalogo.html?categoria=feminino" class="text-muted text-decoration-none">Feminino</a></li>
                         <li><a href="catalogo.html?categoria=masculino" class="text-muted text-decoration-none">Masculino</a></li>
@@ -261,7 +305,7 @@
                 </div>
                 
                 <div class="col-lg-3">
-                    <h5 class="fw-bold mb-3">Contato</h5>
+                    <h5 class="fw-bold mb-3">Fale Conosco</h5>
                     <ul class="list-unstyled text-muted">
                         <li><i class="fas fa-map-marker-alt me-2"></i>Av. Principal, 1234 - Centro</li>
                         <li><i class="fas fa-phone me-2"></i>(11) 9999-8888</li>
@@ -280,8 +324,8 @@
     <!-- Carrinho Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h5 class="fw-bold mb-0">Seu Carrinho</h5>
-            <button class="btn-close" id="cartClose"></button>
+            <h2 class="fw-bold mb-0 h5">Seu Carrinho</h2>
+            <button class="btn-close" id="cartClose" aria-label="Fechar carrinho"></button>
         </div>
         <div class="cart-body" id="cartItems">
             <!-- Itens do carrinho serão inseridos aqui -->
@@ -293,7 +337,7 @@
             <button class="btn btn-primary w-100 mb-2" id="checkoutBtn">
                 Finalizar Compra
             </button>
-            <button class="btn btn-outline-secondary w-100" id="cartClose2">
+            <button class="btn btn-outline-light w-100" id="cartClose2">
                 Continuar Comprando
             </button>
         </div>
@@ -304,17 +348,17 @@
 
     <!-- WhatsApp Float -->
     <a href="https://wa.me/5551997002031?text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20os%20produtos." 
-       class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+       class="whatsapp-float" target="_blank" aria-label="Falar conosco via WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
     </a>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     
     <!-- Custom JS -->
-    <script src="assets/js/products.js"></script>
-    <script src="assets/js/cart.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/mobile-gestures.js"></script>
+    <script src="assets/js/products.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/mobile-gestures.js" defer></script>
 </body>
 </html>

@@ -19,18 +19,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     let lastScrollTop = 0;
 
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Adicionar sombra quando rolar
-        if (scrollTop > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Adicionar sombra quando rolar
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
 
-        lastScrollTop = scrollTop;
-    });
+            lastScrollTop = scrollTop;
+        });
+    }
 
     // ===== NEWSLETTER FORM =====
     const newsletterForm = document.getElementById('newsletterForm');
@@ -141,55 +143,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     backToTopBtn.className = 'back-to-top';
-    backToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 80px;
-        left: 20px;
-        width: 45px;
-        height: 45px;
-        background: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `;
 
     document.body.appendChild(backToTopBtn);
 
     // Mostrar/ocultar botão baseado no scroll com responsividade
     const updateBackToTopButton = () => {
-        const isMobile = window.innerWidth <= 768;
-        
         if (window.pageYOffset > 300) {
-            backToTopBtn.style.opacity = '1';
-            backToTopBtn.style.visibility = 'visible';
-            
-            // Ajustar posição para mobile
-            if (isMobile) {
-                backToTopBtn.style.bottom = '80px';
-                backToTopBtn.style.left = '15px';
-                backToTopBtn.style.width = '42px';
-                backToTopBtn.style.height = '42px';
-                backToTopBtn.style.fontSize = '14px';
-            } else {
-                backToTopBtn.style.bottom = '80px';
-                backToTopBtn.style.left = '20px';
-                backToTopBtn.style.width = '45px';
-                backToTopBtn.style.height = '45px';
-                backToTopBtn.style.fontSize = '16px';
-            }
+            backToTopBtn.classList.add('show');
         } else {
-            backToTopBtn.style.opacity = '0';
-            backToTopBtn.style.visibility = 'hidden';
+            backToTopBtn.classList.remove('show');
         }
     };
     

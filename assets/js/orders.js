@@ -95,7 +95,9 @@ class SistemaPedidos {
 
     // Consultar pedidos
     consultarPedidos() {
-        const cpf = document.getElementById('cpfLookup').value;
+        const cpfInputEl = document.getElementById('cpfLookup');
+        if (!cpfInputEl) return;
+        const cpf = cpfInputEl.value;
         const pedidos = this.buscarPedidosPorCPF(cpf);
 
         if (pedidos.length > 0) {
@@ -112,10 +114,12 @@ class SistemaPedidos {
         const ordersList = document.getElementById('ordersList');
         const noOrdersMessage = document.getElementById('noOrdersMessage');
 
+        if (!ordersSection || !ordersList) return;
+
         // Ocultar formulário e mostrar pedidos
-        lookupCard.style.display = 'none';
+        if (lookupCard) lookupCard.style.display = 'none';
         ordersSection.style.display = 'block';
-        noOrdersMessage.style.display = 'none';
+        if (noOrdersMessage) noOrdersMessage.style.display = 'none';
 
         // Ordenar pedidos por data (mais recente primeiro)
         pedidos.sort((a, b) => new Date(b.data) - new Date(a.data));
@@ -131,7 +135,9 @@ class SistemaPedidos {
         const ordersList = document.getElementById('ordersList');
         const noOrdersMessage = document.getElementById('noOrdersMessage');
 
-        lookupCard.style.display = 'none';
+        if (!ordersSection || !ordersList || !noOrdersMessage) return;
+
+        if (lookupCard) lookupCard.style.display = 'none';
         ordersSection.style.display = 'block';
         ordersList.innerHTML = '';
         noOrdersMessage.style.display = 'block';
@@ -280,11 +286,12 @@ function voltarConsulta() {
     const lookupCard = document.getElementById('lookupCard');
     const ordersSection = document.getElementById('ordersSection');
     
-    lookupCard.style.display = 'block';
-    ordersSection.style.display = 'none';
+    if (lookupCard) lookupCard.style.display = 'block';
+    if (ordersSection) ordersSection.style.display = 'none';
     
     // Limpar campo CPF
-    document.getElementById('cpfLookup').value = '';
+    const cpfLookup = document.getElementById('cpfLookup');
+    if (cpfLookup) cpfLookup.value = '';
 }
 
 // Rastrear pedido (simulação)
@@ -296,11 +303,15 @@ function rastrearPedido(pedidoId) {
 let sistemaPedidos;
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar apenas se elementos-chave da página de pedidos existirem
+    const hasOrdersUI = document.getElementById('lookupForm') || document.getElementById('ordersSection') || document.getElementById('ordersList');
+    if (!hasOrdersUI) {
+        return;
+    }
     sistemaPedidos = new SistemaPedidos();
+    // Exportar após inicialização
+    if (typeof window !== 'undefined') {
+        window.sistemaPedidos = sistemaPedidos;
+    }
     console.log('📦 Sistema de Pedidos carregado!');
 });
-
-// Exportar para uso em outros arquivos
-if (typeof window !== 'undefined') {
-    window.sistemaPedidos = sistemaPedidos;
-}

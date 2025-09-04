@@ -11,12 +11,67 @@ class MobileGestures {
         this.init();
     }
 
+    // ===== SWIPE/DRAG NO CARROSSEL =====
+    setupCarouselSwipe() {
+        const carouselEl = document.getElementById('heroCarousel');
+        if (!carouselEl || typeof bootstrap === 'undefined' || !bootstrap.Carousel) return;
+
+        const carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl, {
+            interval: 4000,
+            ride: false, // controlaremos pausa/ciclo manualmente no gesto
+            touch: false // desativa touch interno do BS para evitar conflito
+        });
+
+        let startX = 0;
+        let startY = 0;
+        let dragging = false;
+        const threshold = 40; // pixels para considerar swipe
+
+        const onStart = (x, y) => {
+            dragging = true;
+            startX = x;
+            startY = y;
+            try { carousel.pause(); } catch (_) {}
+        };
+
+        const onMove = (x, y) => {
+            if (!dragging) return;
+            const dx = x - startX;
+            const dy = y - startY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > threshold) {
+                if (dx > 0) {
+                    carousel.prev();
+                } else {
+                    carousel.next();
+                }
+                dragging = false;
+            }
+        };
+
+        const onEnd = () => {
+            dragging = false;
+            try { carousel.cycle(); } catch (_) {}
+        };
+
+        // Touch
+        carouselEl.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+        carouselEl.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+        carouselEl.addEventListener('touchend', onEnd, { passive: true });
+
+        // Pointer/mouse (desktop)
+        carouselEl.addEventListener('pointerdown', (e) => onStart(e.clientX, e.clientY));
+        carouselEl.addEventListener('pointermove', (e) => onMove(e.clientX, e.clientY));
+        carouselEl.addEventListener('pointerup', onEnd);
+        carouselEl.addEventListener('pointerleave', onEnd);
+    }
+
     init() {
         this.setupSwipeGestures();
         this.setupPullToRefresh();
         this.setupTouchFeedback();
         this.setupKeyboardHandling();
         this.setupInstallPrompt();
+        this.setupCarouselSwipe();
     }
 
     // ===== GESTOS DE SWIPE =====
@@ -341,8 +396,8 @@ class MobileGestures {
 }
 
 // ===== CSS ANIMATIONS =====
-const style = document.createElement('style');
-style.textContent = `
+const mobileGesturesStyle = document.createElement('style');
+mobileGesturesStyle.textContent = `
     @keyframes fadeInOut {
         0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
         20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -368,7 +423,7 @@ style.textContent = `
         100% { transform: scale(1); }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(mobileGesturesStyle);
 
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {

@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const limparFiltros = document.getElementById('limparFiltros');
     const limparFiltros2 = document.getElementById('limparFiltros2');
 
+    // Se não houver grid de produtos, não é a página de catálogo
+    if (!produtosGrid || !loadingProducts || !noResults) {
+        return;
+    }
+
     // ===== APLICAR FILTROS =====
     function aplicarTodosFiltros() {
         showLoading();
@@ -91,30 +96,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== RENDERIZAR RESULTADOS =====
     function renderizarResultados() {
+        if (!produtosGrid || !noResults) return;
         if (produtosFiltrados.length === 0) {
             produtosGrid.style.display = 'none';
             noResults.style.display = 'block';
-            resultCount.textContent = '';
+            if (resultCount) resultCount.textContent = '';
         } else {
             produtosGrid.style.display = 'flex';
             noResults.style.display = 'none';
-            renderizarProdutos(produtosFiltrados, 'produtosGrid');
+            if (typeof renderizarProdutos === 'function') {
+                renderizarProdutos(produtosFiltrados, 'produtosGrid');
+            }
             
             // Atualizar contador de resultados
             const total = produtosFiltrados.length;
-            resultCount.textContent = `${total} produto${total !== 1 ? 's' : ''} encontrado${total !== 1 ? 's' : ''}`;
+            if (resultCount) {
+                resultCount.textContent = `${total} produto${total !== 1 ? 's' : ''} encontrado${total !== 1 ? 's' : ''}`;
+            }
         }
     }
 
     // ===== LOADING FUNCTIONS =====
     function showLoading() {
-        loadingProducts.style.display = 'block';
-        produtosGrid.style.display = 'none';
-        noResults.style.display = 'none';
+        if (loadingProducts) loadingProducts.style.display = 'block';
+        if (produtosGrid) produtosGrid.style.display = 'none';
+        if (noResults) noResults.style.display = 'none';
     }
 
     function hideLoading() {
-        loadingProducts.style.display = 'none';
+        if (loadingProducts) loadingProducts.style.display = 'none';
     }
 
     // ===== EVENT LISTENERS =====
@@ -181,7 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Resetar interface
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector('[data-categoria="todos"]').classList.add('active');
+        const btnTodos = document.querySelector('[data-categoria="todos"]');
+        if (btnTodos) btnTodos.classList.add('active');
         
         if (searchInput) searchInput.value = '';
         if (filtroPreco) filtroPreco.value = '';

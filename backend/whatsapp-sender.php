@@ -12,13 +12,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Configurações do WhatsApp Business API
-$WHATSAPP_TOKEN = 'YOUR_WHATSAPP_BUSINESS_TOKEN';
-$WHATSAPP_PHONE_ID = 'YOUR_PHONE_NUMBER_ID';
-$WEBHOOK_VERIFY_TOKEN = 'YOUR_WEBHOOK_VERIFY_TOKEN';
+$WHATSAPP_TOKEN = getenv('WHATSAPP_BUSINESS_TOKEN') ?: 'YOUR_WHATSAPP_BUSINESS_TOKEN';
+$WHATSAPP_PHONE_ID = getenv('WHATSAPP_PHONE_ID') ?: 'YOUR_PHONE_NUMBER_ID';
+$WEBHOOK_VERIFY_TOKEN = getenv('WEBHOOK_VERIFY_TOKEN') ?: 'YOUR_WEBHOOK_VERIFY_TOKEN';
+
+// Modo de desenvolvimento - simula envio bem-sucedido
+$MODO_DESENVOLVIMENTO = true;
 
 // Função para enviar mensagem via WhatsApp Business API
 function enviarMensagemWhatsApp($numero, $mensagem) {
-    global $WHATSAPP_TOKEN, $WHATSAPP_PHONE_ID;
+    global $WHATSAPP_TOKEN, $WHATSAPP_PHONE_ID, $MODO_DESENVOLVIMENTO;
+    
+    // Em modo de desenvolvimento, simular sucesso
+    if ($MODO_DESENVOLVIMENTO) {
+        error_log("[MODO DEV] Simulando envio WhatsApp para: $numero");
+        error_log("[MODO DEV] Mensagem: " . substr($mensagem, 0, 100) . "...");
+        
+        return [
+            'success' => true,
+            'response' => [
+                'messages' => [[
+                    'id' => 'dev_' . uniqid(),
+                    'message_status' => 'sent'
+                ]]
+            ],
+            'http_code' => 200
+        ];
+    }
     
     $url = "https://graph.facebook.com/v18.0/{$WHATSAPP_PHONE_ID}/messages";
     
@@ -43,20 +63,49 @@ function enviarMensagemWhatsApp($numero, $mensagem) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
     curl_close($ch);
+    
+    if ($error) {
+        error_log("Erro cURL WhatsApp: $error");
+    }
     
     return [
         'success' => $httpCode === 200,
         'response' => json_decode($response, true),
-        'http_code' => $httpCode
+        'http_code' => $httpCode,
+        'curl_error' => $error
     ];
 }
 
 // Função para salvar pedido no banco de dados
 function salvarPedido($dadosPedido) {
+    // Em modo de desenvolvimento, salvar em arquivo
+    global $MODO_DESENVOLVIMENTO;
+    
+    if ($MODO_DESENVOLVIMENTO) {
+        $arquivo = 'pedidos_dev.json';
+        $pedidos = [];
+        
+        if (file_exists($arquivo)) {
+            $pedidos = json_decode(file_get_contents($arquivo), true) ?: [];
+        }
+        
+        $pedidos[] = [
+            'timestamp' => date('Y-m-d H:i:s'),
+            'dados' => $dadosPedido
+        ];
+        
+        file_put_contents($arquivo, json_encode($pedidos, JSON_PRETTY_PRINT));
+        error_log("[MODO DEV] Pedido salvo em arquivo: $arquivo");
+        
+        return true;
+    }
+    
     // Conectar ao banco de dados (MySQL/PostgreSQL)
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=moda_elegante', 'username', 'password');
@@ -116,19 +165,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'success' => true,
                     'message' => 'Pedido enviado com sucesso',
                     'whatsapp_id' => $resultado['response']['messages'][0]['id'] ?? null,
-                    'pedido_salvo' => $pedidoSalvo
+                    'pedido_salvo' => $pedidoSalvo,
+                    'modo_dev' => $MODO_DESENVOLVIMENTO
                 ]);
             } else {
                 // Salvar na fila para retry
                 salvarNaFilaRetry($numero, $mensagem, $dadosPedido);
                 
-                http_response_code(500);
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Erro ao enviar mensagem',
-                    'details' => $resultado['response'],
-                    'salvo_para_retry' => true
-                ]);
+                // Em modo dev, não retornar erro para permitir fallback
+                if ($MODO_DESENVOLVIMENTO) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Modo desenvolvimento - usando fallback',
+                        'pedido_salvo' => $pedidoSalvo,
+                        'modo_dev' => true
+                    ]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Erro ao enviar mensagem',
+                        'details' => $resultado['response'],
+                        'salvo_para_retry' => true
+                    ]);
+                }
             }
             break;
             
@@ -148,6 +208,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Função para salvar na fila de retry
 function salvarNaFilaRetry($numero, $mensagem, $dadosPedido) {
+    global $MODO_DESENVOLVIMENTO;
+    
+    if ($MODO_DESENVOLVIMENTO) {
+        $arquivo = 'fila_retry_dev.json';
+        $fila = [];
+        
+        if (file_exists($arquivo)) {
+            $fila = json_decode(file_get_contents($arquivo), true) ?: [];
+        }
+        
+        $fila[] = [
+            'timestamp' => date('Y-m-d H:i:s'),
+            'numero' => $numero,
+            'mensagem' => $mensagem,
+            'dados_pedido' => $dadosPedido,
+            'tentativas' => 0,
+            'status' => 'pendente'
+        ];
+        
+        file_put_contents($arquivo, json_encode($fila, JSON_PRETTY_PRINT));
+        error_log("[MODO DEV] Item salvo na fila de retry: $arquivo");
+        
+        return true;
+    }
+    
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=moda_elegante', 'username', 'password');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

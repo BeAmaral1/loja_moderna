@@ -27,6 +27,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const buyNowBtn = document.getElementById('buyNowBtn');
     const relatedProducts = document.getElementById('relatedProducts');
 
+    // Se elementos essenciais da página de produto não existirem, sair cedo
+    const requiredElements = [
+        mainImage,
+        thumbnails,
+        productName,
+        productPrice,
+        productOriginalPrice,
+        productDescription,
+        productStars,
+        productReviews,
+        productBadge,
+        colorSection,
+        colorOptions,
+        sizeSection,
+        sizeOptions,
+        quantityInput,
+        decreaseQty,
+        increaseQty,
+        addToCartBtn,
+        buyNowBtn,
+        relatedProducts
+    ];
+    if (requiredElements.some(el => !el)) {
+        return; // Não é a página de produto; evita erros de acesso a null
+    }
+
     // ===== OBTER ID DO PRODUTO DA URL =====
     const urlParams = new URLSearchParams(window.location.search);
     const produtoId = parseInt(urlParams.get('id'));

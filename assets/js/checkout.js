@@ -11,9 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartaoFields = document.getElementById('cartaoFields');
     const paymentRadios = document.querySelectorAll('input[name="pagamento"]');
 
+    // Sair se não for a página de checkout (elementos essenciais ausentes)
+    if (!checkoutForm || !orderItems || !subtotalElement || !freteElement || !totalElement) {
+        return;
+    }
+
     // ===== VERIFICAR SE HÁ ITENS NO CARRINHO =====
-    if (carrinho.carrinho.length === 0) {
-        window.location.href = 'catalogo.html';
+    if (!carrinho || carrinho.carrinho.length === 0) {
+        // Mostrar alerta e redirecionar após 3 segundos
+        mostrarAlerta('Seu carrinho está vazio! Redirecionando para o catálogo...', 'warning');
+        setTimeout(() => {
+            window.location.href = 'catalogo.html';
+        }, 3000);
         return;
     }
 
@@ -71,33 +80,39 @@ document.addEventListener('DOMContentLoaded', function() {
     function aplicarMascaras() {
         // Máscara CPF
         const cpfInput = document.getElementById('cpf');
-        cpfInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            e.target.value = value;
-        });
+        if (cpfInput) {
+            cpfInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            });
+        }
 
         // Máscara Telefone
         const telefoneInput = document.getElementById('telefone');
-        telefoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{2})(\d)/, '($1) $2');
-            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-            e.target.value = value;
-        });
+        if (telefoneInput) {
+            telefoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                e.target.value = value;
+            });
+        }
 
         // Máscara CEP
-        cepInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{5})(\d)/, '$1-$2');
-            e.target.value = value;
-            
-            if (value.length === 9) {
-                buscarCEP(value);
-            }
-        });
+        if (cepInput) {
+            cepInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                e.target.value = value;
+                
+                if (value.length === 9) {
+                    buscarCEP(value);
+                }
+            });
+        }
 
         // Máscara Cartão de Crédito
         const numeroCartaoInput = document.getElementById('numeroCartao');
@@ -123,22 +138,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== CONTROLE DE FORMA DE PAGAMENTO =====
     paymentRadios.forEach(radio => {
         radio.addEventListener('change', function() {
+            const numeroCartao = document.getElementById('numeroCartao');
+            const cvv = document.getElementById('cvv');
+            const nomeCartao = document.getElementById('nomeCartao');
+            const mesVencimento = document.getElementById('mesVencimento');
+            const anoVencimento = document.getElementById('anoVencimento');
             if (this.value === 'cartao') {
-                cartaoFields.style.display = 'block';
+                if (cartaoFields) cartaoFields.style.display = 'block';
                 // Tornar campos obrigatórios
-                document.getElementById('numeroCartao').required = true;
-                document.getElementById('cvv').required = true;
-                document.getElementById('nomeCartao').required = true;
-                document.getElementById('mesVencimento').required = true;
-                document.getElementById('anoVencimento').required = true;
+                if (numeroCartao) numeroCartao.required = true;
+                if (cvv) cvv.required = true;
+                if (nomeCartao) nomeCartao.required = true;
+                if (mesVencimento) mesVencimento.required = true;
+                if (anoVencimento) anoVencimento.required = true;
             } else {
-                cartaoFields.style.display = 'none';
+                if (cartaoFields) cartaoFields.style.display = 'none';
                 // Remover obrigatoriedade
-                document.getElementById('numeroCartao').required = false;
-                document.getElementById('cvv').required = false;
-                document.getElementById('nomeCartao').required = false;
-                document.getElementById('mesVencimento').required = false;
-                document.getElementById('anoVencimento').required = false;
+                if (numeroCartao) numeroCartao.required = false;
+                if (cvv) cvv.required = false;
+                if (nomeCartao) nomeCartao.required = false;
+                if (mesVencimento) mesVencimento.required = false;
+                if (anoVencimento) anoVencimento.required = false;
             }
         });
     });
@@ -232,14 +252,18 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Obter itens do carrinho
-        const itensCarrinho = carrinho.carrinho;
-        const total = carrinho.obterTotal();
+        const itensCarrinho = carrinho.carrinho || [];
+        const subtotal = carrinho.obterTotal();
+        const frete = subtotal >= 200 ? 0 : 15.90;
+        const total = subtotal + frete;
 
         // Criar objeto do pedido
         const dadosPedido = {
             id: pedidoId,
             cliente: dadosCliente,
             itens: itensCarrinho,
+            subtotal: subtotal,
+            frete: frete,
             total: total,
             formaPagamento: formaPagamento
         };
@@ -285,111 +309,152 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Obter itens do carrinho
-        const itensCarrinho = carrinho.carrinho;
-        const total = carrinho.obterTotal();
+        const itensCarrinho = carrinho.carrinho || [];
+        const subtotal = carrinho.obterTotal();
+        const frete = subtotal >= 200 ? 0 : 15.90;
+        const total = subtotal + frete;
 
         // Montar mensagem do WhatsApp
-        let mensagem = `🛍️ NOVO PEDIDO - MODA ELEGANTE\n\n`;
-        mensagem += `📋 Pedido: #${pedidoId}\n`;
-        mensagem += `📅 Data: ${new Date().toLocaleString('pt-BR')}\n\n`;
+        let mensagem = `🛍️ *NOVO PEDIDO - MODA ELEGANTE*\n\n`;
+        mensagem += `📋 *Pedido:* #${pedidoId}\n`;
+        mensagem += `📅 *Data:* ${new Date().toLocaleString('pt-BR')}\n\n`;
         
-        mensagem += `👤 DADOS DO CLIENTE:\n`;
-        mensagem += `• Nome: ${dadosCliente.nome}\n`;
-        mensagem += `• Email: ${dadosCliente.email}\n`;
-        mensagem += `• Telefone: ${dadosCliente.telefone}\n`;
-        mensagem += `• CPF: ${dadosCliente.cpf}\n\n`;
+        mensagem += `👤 *DADOS DO CLIENTE:*\n`;
+        mensagem += `• *Nome:* ${dadosCliente.nome}\n`;
+        mensagem += `• *Email:* ${dadosCliente.email}\n`;
+        mensagem += `• *Telefone:* ${dadosCliente.telefone}\n`;
+        mensagem += `• *CPF:* ${dadosCliente.cpf}\n\n`;
         
-        mensagem += `📍 ENDEREÇO DE ENTREGA:\n`;
+        mensagem += `📍 *ENDEREÇO DE ENTREGA:*\n`;
         mensagem += `• ${dadosCliente.endereco.rua}, ${dadosCliente.endereco.numero}\n`;
         if (dadosCliente.endereco.complemento) {
-            mensagem += `• Complemento: ${dadosCliente.endereco.complemento}\n`;
+            mensagem += `• *Complemento:* ${dadosCliente.endereco.complemento}\n`;
         }
         mensagem += `• ${dadosCliente.endereco.bairro} - ${dadosCliente.endereco.cidade}/${dadosCliente.endereco.estado}\n`;
-        mensagem += `• CEP: ${dadosCliente.endereco.cep}\n\n`;
+        mensagem += `• *CEP:* ${dadosCliente.endereco.cep}\n\n`;
         
-        mensagem += `🛒 PRODUTOS:\n`;
+        mensagem += `🛒 *PRODUTOS:*\n`;
         itensCarrinho.forEach(item => {
-            mensagem += `• ${item.nome}\n`;
+            mensagem += `• *${item.nome}*\n`;
             if (item.tamanho) mensagem += `  Tamanho: ${item.tamanho}\n`;
             if (item.cor) mensagem += `  Cor: ${item.cor}\n`;
             mensagem += `  Qtd: ${item.quantidade} x ${formatarPreco(item.preco)}\n`;
             mensagem += `  Subtotal: ${formatarPreco(item.preco * item.quantidade)}\n\n`;
         });
         
-        mensagem += `💰 PAGAMENTO:\n`;
+        mensagem += `💰 *RESUMO FINANCEIRO:*\n`;
+        mensagem += `• *Subtotal:* ${formatarPreco(subtotal)}\n`;
+        mensagem += `• *Frete:* ${frete === 0 ? 'GRÁTIS' : formatarPreco(frete)}\n`;
+        mensagem += `• *TOTAL:* ${formatarPreco(total)}\n\n`;
+        
         const formasPagamento = {
-            'pix': 'PIX',
-            'boleto': 'Boleto Bancário',
-            'cartao': 'Cartão de Crédito'
+            'pix': '💳 PIX',
+            'boleto': '🧾 Boleto Bancário',
+            'cartao': '💳 Cartão de Crédito'
         };
-        mensagem += `• Forma: ${formasPagamento[formaPagamento] || formaPagamento}\n`;
-        mensagem += `• TOTAL: ${formatarPreco(total)}\n\n`;
+        mensagem += `💳 *FORMA DE PAGAMENTO:* ${formasPagamento[formaPagamento] || formaPagamento}\n\n`;
         
         mensagem += `📱 Pedido gerado automaticamente pelo site da Moda Elegante`;
 
         // Número do WhatsApp do dono (pode ser configurado)
-        const numeroWhatsApp = '5551997002031'; // Número atualizado
+        const numeroWhatsApp = '5551997002031';
         
-        // Enviar mensagem silenciosamente via backend
-        console.log('🔄 Enviando pedido silenciosamente...');
+        // Tentar enviar via backend primeiro
+        enviarViaBackend(mensagem, numeroWhatsApp, pedidoId)
+            .then(success => {
+                if (success) {
+                    console.log('✅ Pedido enviado via backend');
+                } else {
+                    // Fallback: abrir WhatsApp Web
+                    abrirWhatsAppWeb(numeroWhatsApp, mensagem);
+                }
+            })
+            .catch(() => {
+                // Fallback: abrir WhatsApp Web
+                abrirWhatsAppWeb(numeroWhatsApp, mensagem);
+            });
+    }
+
+    // ===== ABRIR WHATSAPP WEB (FALLBACK) =====
+    function abrirWhatsAppWeb(numeroWhatsApp, mensagem) {
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
         
-        // Envio via backend PHP (método principal)
-        enviarViaBackend(mensagem, numeroWhatsApp, pedidoId);
+        // Abrir em nova aba
+        const novaAba = window.open(url, '_blank');
         
-        // Não mostrar nada ao cliente - processo completamente silencioso
-        console.log('✅ Pedido processado em background!');
+        if (!novaAba) {
+            // Se popup foi bloqueado, mostrar link
+            mostrarAlerta(`
+                <div class="text-center">
+                    <p>Para finalizar o pedido, clique no link abaixo:</p>
+                    <a href="${url}" target="_blank" class="btn btn-success">
+                        <i class="fab fa-whatsapp me-2"></i>Enviar Pedido via WhatsApp
+                    </a>
+                </div>
+            `, 'info');
+        }
+        
+        console.log('📱 WhatsApp Web aberto como fallback');
     }
 
     // ===== ENVIAR VIA BACKEND =====
     function enviarViaBackend(mensagem, numeroWhatsApp, pedidoId) {
-        // Obter dados completos do pedido
-        const dadosCompletos = {
-            pedido_id: pedidoId,
-            cliente: {
-                nome: document.getElementById('nome').value,
-                email: document.getElementById('email').value,
-                telefone: document.getElementById('telefone').value,
-                cpf: document.getElementById('cpf').value,
-                endereco: {
-                    cep: document.getElementById('cep').value,
-                    rua: document.getElementById('endereco').value,
-                    numero: document.getElementById('numero').value,
-                    complemento: document.getElementById('complemento').value,
-                    bairro: document.getElementById('bairro').value,
-                    cidade: document.getElementById('cidade').value,
-                    estado: document.getElementById('estado').value
-                }
-            },
-            itens: carrinho.obterItens(),
-            total: carrinho.obterTotal(),
-            forma_pagamento: document.querySelector('input[name="pagamento"]:checked').value
-        };
+        return new Promise((resolve, reject) => {
+            // Obter dados completos do pedido
+            const dadosCompletos = {
+                pedido_id: pedidoId,
+                cliente: {
+                    nome: document.getElementById('nome').value,
+                    email: document.getElementById('email').value,
+                    telefone: document.getElementById('telefone').value,
+                    cpf: document.getElementById('cpf').value,
+                    endereco: {
+                        cep: document.getElementById('cep').value,
+                        rua: document.getElementById('endereco').value,
+                        numero: document.getElementById('numero').value,
+                        complemento: document.getElementById('complemento').value,
+                        bairro: document.getElementById('bairro').value,
+                        cidade: document.getElementById('cidade').value,
+                        estado: document.getElementById('estado').value
+                    }
+                },
+                itens: carrinho.carrinho || [],
+                total: carrinho.obterTotal(),
+                forma_pagamento: document.querySelector('input[name="pagamento"]:checked').value
+            };
 
-        // Enviar para backend via fetch (silencioso)
-        fetch('backend/whatsapp-sender.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                acao: 'enviar_pedido',
-                numero: numeroWhatsApp,
-                mensagem: mensagem,
-                dados_pedido: dadosCompletos
+            // Enviar para backend via fetch
+            fetch('backend/whatsapp-sender.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    acao: 'enviar_pedido',
+                    numero: numeroWhatsApp,
+                    mensagem: mensagem,
+                    dados_pedido: dadosCompletos
+                })
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('✅ Pedido enviado via WhatsApp Business API');
-            } else {
-                console.log('⚠️ Pedido salvo na fila para retry automático');
-            }
-        })
-        .catch(error => {
-            // Fallback silencioso: salvar localmente
-            console.log('💾 Salvando pedido localmente para processamento posterior');
-            salvarPedidoLocal(dadosCompletos, mensagem, numeroWhatsApp);
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    console.log('✅ Pedido enviado via backend');
+                    resolve(true);
+                } else {
+                    console.log('⚠️ Backend falhou, usando fallback');
+                    resolve(false);
+                }
+            })
+            .catch(error => {
+                console.log('❌ Erro no backend, usando fallback:', error);
+                resolve(false);
+            });
         });
     }
 
@@ -611,6 +676,7 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 20px;
             z-index: 1060;
             min-width: 300px;
+            max-width: 400px;
         `;
         alerta.innerHTML = `
             ${mensagem}
@@ -619,11 +685,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.body.appendChild(alerta);
 
+        // Auto-remover após 8 segundos para alertas importantes
+        const timeout = tipo === 'info' ? 8000 : 5000;
         setTimeout(() => {
             if (alerta.parentNode) {
                 alerta.remove();
             }
-        }, 5000);
+        }, timeout);
+    }
+    
+    // ===== ADICIONAR MÉTODO OBTER ITENS AO CARRINHO =====
+    if (carrinho && !carrinho.obterItens) {
+        carrinho.obterItens = function() {
+            return this.carrinho || [];
+        };
     }
 
     // ===== INICIALIZAÇÃO =====
