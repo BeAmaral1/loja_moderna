@@ -1,0 +1,278 @@
+/* ===== ESTILOS PARA PAGAMENTO ASAAS ===== */
+
+/* Botões de pagamento */
+.payment-buttons {
+    margin-top: 2rem;
+}
+
+.payment-buttons .btn {
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.payment-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.payment-buttons .btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-color: #10b981;
+}
+
+.payment-buttons .btn-success:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    border-color: #059669;
+}
+
+.payment-buttons .btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-color: #f59e0b;
+    color: white;
+}
+
+.payment-buttons .btn-warning:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    border-color: #d97706;
+    color: white;
+}
+
+.payment-buttons .btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-color: #3b82f6;
+}
+
+.payment-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-color: #2563eb;
+}
+
+/* Loading overlay */
+#paymentLoading {
+    backdrop-filter: blur(10px);
+}
+
+#paymentLoading .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+}
+
+/* Modais de pagamento */
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 1.5rem;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* PIX Modal */
+#pixModal .modal-body img {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+#pixModal .input-group .form-control {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background-color: #f8f9fa;
+}
+
+#pixModal .btn-outline-primary {
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+#pixModal .btn-outline-primary:hover {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+/* Boleto Modal */
+#boletoModal .fa-file-invoice {
+    color: #f59e0b;
+    margin-bottom: 1rem;
+}
+
+#boletoModal .btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-weight: 600;
+}
+
+#boletoModal .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Alertas personalizados */
+.alert {
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e40af;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #fef3c7, #fed7aa);
+    color: #92400e;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #fecaca, #fca5a5);
+    color: #991b1b;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #065f46;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal.show .modal-dialog {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .payment-buttons .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    #pixModal .modal-body,
+    #boletoModal .modal-body {
+        padding: 1.5rem;
+    }
+    
+    #pixModal .modal-body img {
+        max-width: 180px;
+    }
+    
+    .modal-header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .modal-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Estados dos botões */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Melhorias visuais para campos de pagamento */
+.payment-methods .form-check {
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.payment-methods .form-check:hover {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+}
+
+.payment-methods .form-check-input:checked + .form-check-label {
+    color: #3b82f6;
+}
+
+.payment-methods .form-check-input:checked ~ * {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+/* Campos do cartão */
+#cartaoFields .form-floating {
+    margin-bottom: 1rem;
+}
+
+#cartaoFields .form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+/* Indicadores de segurança */
+.security-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.security-badge i {
+    color: #10b981;
+}

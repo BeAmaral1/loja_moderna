@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Login Administrativo - Moda Elegante</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-body {
+            padding: 2rem;
+        }
+
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-login {
+            background: var(--gradient-bg);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                margin: 1rem;
+                border-radius: 16px;
+            }
+            
+            .login-header, .login-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <i class="fas fa-shield-alt"></i>
+            <h2 class="fw-bold mb-0">Painel Administrativo</h2>
+            <p class="mb-0 opacity-75">Moda Elegante</p>
+        </div>
+        
+        <div class="login-body">
+            <form id="loginForm">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="usuario" placeholder="Usuário" required>
+                    <label for="usuario">
+                        <i class="fas fa-user me-2"></i>Usuário
+                    </label>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="senha" placeholder="Senha" required>
+                    <label for="senha">
+                        <i class="fas fa-lock me-2"></i>Senha
+                    </label>
+                </div>
+                
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="lembrarMe">
+                    <label class="form-check-label" for="lembrarMe">
+                        Lembrar-me
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-login">
+                    <i class="fas fa-sign-in-alt me-2"></i>Entrar
+                </button>
+            </form>
+            
+            <div class="forgot-password">
+                <a href="#" onclick="recuperarSenha()">Esqueceu a senha?</a>
+            </div>
+            
+            <!-- Alert para mensagens -->
+            <div id="loginAlert" class="alert alert-danger mt-3" style="display: none;">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span id="loginMessage"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sistema de login administrativo
+        class AdminLogin {
+            constructor() {
+                this.initializeEventListeners();
+                this.checkExistingSession();
+            }
+
+            initializeEventListeners() {
+                const form = document.getElementById('loginForm');
+                form.addEventListener('submit', (e) => this.handleLogin(e));
+            }
+
+            checkExistingSession() {
+                const session = localStorage.getItem('adminSession');
+                if (session) {
+                    const sessionData = JSON.parse(session);
+                    if (sessionData.expires > Date.now()) {
+                        // Sessão válida, redirecionar para dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        // Sessão expirada
+                        localStorage.removeItem('adminSession');
+                    }
+                }
+            }
+
+            async handleLogin(e) {
+                e.preventDefault();
+                
+                const usuario = document.getElementById('usuario').value;
+                const senha = document.getElementById('senha').value;
+                const lembrarMe = document.getElementById('lembrarMe').checked;
+
+                // Mostrar loading
+                this.showLoading(true);
+
+                try {
+                    const response = await fetch('../backend/admin-auth.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            action: 'login',
+                            usuario: usuario,
+                            senha: senha,
+                            lembrarMe: lembrarMe
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        // Login bem-sucedido
+                        const sessionData = {
+                            token: result.token,
+                            usuario: result.usuario,
+                            expires: Date.now() + (lembrarMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000) // 7 dias ou 24h
+                        };
+
+                        localStorage.setItem('adminSession', JSON.stringify(sessionData));
+                        
+                        // Redirecionar para dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        // Erro no login
+                        this.showAlert(result.message || 'Usuário ou senha incorretos', 'danger');
+                    }
+                } catch (error) {
+                    console.error('Erro no login:', error);
+                    this.showAlert('Erro de conexão. Tente novamente.', 'danger');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+
+            showAlert(message, type = 'danger') {
+                const alert = document.getElementById('loginAlert');
+                const messageSpan = document.getElementById('loginMessage');
+                
+                alert.className = `alert alert-${type} mt-3`;
+                messageSpan.textContent = message;
+                alert.style.display = 'block';
+
+                // Esconder após 5 segundos
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+
+            showLoading(show) {
+                const button = document.querySelector('.btn-login');
+                const icon = button.querySelector('i');
+                
+                if (show) {
+                    button.disabled = true;
+                    icon.className = 'fas fa-spinner fa-spin me-2';
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Entrando...';
+                } else {
+                    button.disabled = false;
+                    button.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>Entrar';
+                }
+            }
+        }
+
+        function recuperarSenha() {
+            alert('Entre em contato com o administrador do sistema para recuperar sua senha.');
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            new AdminLogin();
+        });
+    </script>
+</body>
+</html>

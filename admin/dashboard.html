@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dashboard Administrativo - Moda Elegante</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+    <style>
+        /* Estilos específicos do dashboard - complementam admin.css */
+        .mobile-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .topbar {
+                padding: 1rem;
+                margin: -1rem -1rem 1rem -1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h4 class="fw-bold mb-0">
+                <i class="fas fa-gem me-2"></i>Moda Elegante
+            </h4>
+            <small class="opacity-75">Painel Administrativo</small>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#dashboard" onclick="showSection('dashboard')">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#vendas" onclick="showSection('vendas')">
+                        <i class="fas fa-shopping-cart me-2"></i>Vendas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#pagamentos" onclick="showSection('pagamentos')">
+                        <i class="fas fa-credit-card me-2"></i>Pagamentos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#produtos" onclick="showSection('produtos')">
+                        <i class="fas fa-box me-2"></i>Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#clientes" onclick="showSection('clientes')">
+                        <i class="fas fa-users me-2"></i>Clientes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#relatorios" onclick="showSection('relatorios')">
+                        <i class="fas fa-chart-bar me-2"></i>Relatórios
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#configuracoes" onclick="showSection('configuracoes')">
+                        <i class="fas fa-cog me-2"></i>Configurações
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Overlay para mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-link mobile-toggle me-3 p-0" onclick="toggleSidebar()">
+                    <i class="fas fa-bars fs-4"></i>
+                </button>
+                <h2 class="mb-0">Dashboard</h2>
+            </div>
+            <button class="btn btn-logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt me-2"></i>Sair
+            </button>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="content-section">
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon primary">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1" id="totalVendas">R$ 0,00</h3>
+                        <p class="text-muted mb-0">Vendas Hoje</p>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>+12% vs ontem
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon success">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1" id="totalPedidos">0</h3>
+                        <p class="text-muted mb-0">Pedidos Hoje</p>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>+8% vs ontem
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1" id="pedidosPendentes">0</h3>
+                        <p class="text-muted mb-0">Pendentes</p>
+                        <small class="text-warning">
+                            <i class="fas fa-exclamation-triangle me-1"></i>Requer atenção
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon danger">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="fw-bold mb-1" id="totalClientes">0</h3>
+                        <p class="text-muted mb-0">Clientes</p>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>+5 novos hoje
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <div class="chart-container">
+                        <h5 class="fw-bold mb-3">Vendas dos Últimos 7 Dias</h5>
+                        <canvas id="salesChart" height="100"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="chart-container">
+                        <h5 class="fw-bold mb-3">Métodos de Pagamento</h5>
+                        <canvas id="paymentChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h5 class="fw-bold mb-0">Pedidos Recentes</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Pagamento</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentOrdersTable">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outras seções serão adicionadas aqui -->
+        <div id="vendas-section" class="content-section" style="display: none;">
+            <h3>Gestão de Vendas</h3>
+            <p>Seção em desenvolvimento...</p>
+        </div>
+
+        <div id="pagamentos-section" class="content-section" style="display: none;">
+            <h3>Gestão de Pagamentos</h3>
+            <p>Seção em desenvolvimento...</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        class AdminDashboard {
+            constructor() {
+                this.checkAuthentication();
+                this.initializeCharts();
+                this.loadDashboardData();
+                this.setupEventListeners();
+            }
+
+            checkAuthentication() {
+                const session = localStorage.getItem('adminSession');
+                if (!session) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const sessionData = JSON.parse(session);
+                if (sessionData.expires < Date.now()) {
+                    localStorage.removeItem('adminSession');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                document.getElementById('adminUser').textContent = sessionData.usuario;
+            }
+
+            setupEventListeners() {
+                // Auto-refresh data every 5 minutes
+                setInterval(() => {
+                    this.loadDashboardData();
+                }, 5 * 60 * 1000);
+            }
+
+            async loadDashboardData() {
+                try {
+                    const session = JSON.parse(localStorage.getItem('adminSession'));
+                    const response = await fetch('../backend/admin-api.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${session.token}`
+                        },
+                        body: JSON.stringify({
+                            action: 'dashboard_stats'
+                        })
+                    });
+
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        this.updateStats(result.data);
+                        this.updateRecentOrders(result.data.recent_orders || []);
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar dados:', error);
+                }
+            }
+
+            updateStats(data) {
+                document.getElementById('totalVendas').textContent = 
+                    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+                    .format(data.total_vendas_hoje || 0);
+                
+                document.getElementById('totalPedidos').textContent = data.total_pedidos_hoje || 0;
+                document.getElementById('pedidosPendentes').textContent = data.pedidos_pendentes || 0;
+                document.getElementById('totalClientes').textContent = data.total_clientes || 0;
+            }
+
+            updateRecentOrders(orders) {
+                const tbody = document.getElementById('recentOrdersTable');
+                tbody.innerHTML = '';
+
+                orders.forEach(order => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>#${order.id}</td>
+                        <td>${order.cliente}</td>
+                        <td>${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(order.valor)}</td>
+                        <td><span class="badge bg-${this.getStatusColor(order.status)}">${order.status}</span></td>
+                        <td>${order.pagamento}</td>
+                        <td>${new Date(order.data).toLocaleDateString('pt-BR')}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewOrder('${order.id}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            getStatusColor(status) {
+                const colors = {
+                    'Pago': 'success',
+                    'Pendente': 'warning',
+                    'Cancelado': 'danger',
+                    'Processando': 'info'
+                };
+                return colors[status] || 'secondary';
+            }
+
+            initializeCharts() {
+                // Gráfico de Vendas
+                const salesCtx = document.getElementById('salesChart').getContext('2d');
+                this.salesChart = new Chart(salesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                        datasets: [{
+                            label: 'Vendas (R$)',
+                            data: [1200, 1900, 3000, 5000, 2000, 3000, 4500],
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'R$ ' + value.toLocaleString('pt-BR');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Gráfico de Métodos de Pagamento
+                const paymentCtx = document.getElementById('paymentChart').getContext('2d');
+                this.paymentChart = new Chart(paymentCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['PIX', 'Cartão', 'Boleto'],
+                        datasets: [{
+                            data: [45, 35, 20],
+                            backgroundColor: ['#10b981', '#2563eb', '#f59e0b'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function showSection(sectionName) {
+            // Esconder todas as seções
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Mostrar seção selecionada
+            document.getElementById(sectionName + '-section').style.display = 'block';
+
+            // Atualizar menu ativo
+            document.querySelectorAll('.sidebar-menu .nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Atualizar título
+            const titles = {
+                'dashboard': 'Dashboard',
+                'vendas': 'Vendas',
+                'pagamentos': 'Pagamentos',
+                'produtos': 'Produtos',
+                'clientes': 'Clientes',
+                'relatorios': 'Relatórios',
+                'configuracoes': 'Configurações'
+            };
+            document.getElementById('pageTitle').textContent = titles[sectionName];
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        function logout() {
+            if (confirm('Deseja realmente sair?')) {
+                localStorage.removeItem('adminSession');
+                window.location.href = 'login.html';
+            }
+        }
+
+        function viewOrder(orderId) {
+            alert('Visualizar pedido #' + orderId + ' (funcionalidade em desenvolvimento)');
+        }
+
+        // Inicializar dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            new AdminDashboard();
+        });
+    </script>
+</body>
+</html>
