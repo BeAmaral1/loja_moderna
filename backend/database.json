@@ -1,0 +1,196 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Camiseta Básica Feminina",
+      "categoria": "feminino",
+      "preco": 29.90,
+      "estoque": 150,
+      "status": "ativo",
+      "descricao": "Camiseta básica 100% algodão, confortável e versátil",
+      "imagem": "https://via.placeholder.com/300x400/2563eb/ffffff?text=Camiseta+Básica",
+      "tags": ["basico", "algodao", "conforto"],
+      "data_criacao": "2024-01-15",
+      "vendas": 45
+    },
+    {
+      "id": 2,
+      "nome": "Calça Jeans Skinny",
+      "categoria": "feminino",
+      "preco": 89.90,
+      "estoque": 75,
+      "status": "ativo",
+      "descricao": "Calça jeans skinny com elastano, modelagem perfeita",
+      "imagem": "https://via.placeholder.com/300x400/10b981/ffffff?text=Calça+Jeans",
+      "tags": ["jeans", "skinny", "elastano"],
+      "data_criacao": "2024-01-20",
+      "vendas": 32
+    },
+    {
+      "id": 3,
+      "nome": "Tênis Esportivo Unissex",
+      "categoria": "calcados",
+      "preco": 159.90,
+      "estoque": 30,
+      "status": "ativo",
+      "descricao": "Tênis esportivo com tecnologia de amortecimento",
+      "imagem": "https://via.placeholder.com/300x400/f59e0b/ffffff?text=Tênis+Esportivo",
+      "tags": ["esportivo", "unissex", "amortecimento"],
+      "data_criacao": "2024-02-01",
+      "vendas": 28
+    },
+    {
+      "id": 4,
+      "nome": "Bolsa Feminina Couro",
+      "categoria": "acessorios",
+      "preco": 79.90,
+      "estoque": 0,
+      "status": "esgotado",
+      "descricao": "Bolsa feminina em couro sintético de alta qualidade",
+      "imagem": "https://via.placeholder.com/300x400/8b5cf6/ffffff?text=Bolsa+Couro",
+      "tags": ["couro", "elegante", "feminino"],
+      "data_criacao": "2024-02-10",
+      "vendas": 18
+    },
+    {
+      "id": 5,
+      "nome": "Relógio Digital Smartwatch",
+      "categoria": "acessorios",
+      "preco": 199.90,
+      "estoque": 25,
+      "status": "ativo",
+      "descricao": "Smartwatch com monitor cardíaco e GPS integrado",
+      "imagem": "https://via.placeholder.com/300x400/ef4444/ffffff?text=Smartwatch",
+      "tags": ["tecnologia", "saude", "gps"],
+      "data_criacao": "2024-02-15",
+      "vendas": 12
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "PED001",
+      "cliente": {
+        "nome": "Maria Silva",
+        "email": "maria@email.com",
+        "telefone": "(11) 99999-9999",
+        "endereco": "Rua das Flores, 123 - São Paulo, SP"
+      },
+      "itens": [
+        {
+          "produto_id": 1,
+          "nome": "Camiseta Básica Feminina",
+          "quantidade": 2,
+          "preco_unitario": 29.90,
+          "subtotal": 59.80
+        }
+      ],
+      "total": 59.80,
+      "status": "confirmado",
+      "forma_pagamento": "pix",
+      "data_pedido": "2024-03-01T10:30:00",
+      "data_entrega": null
+    },
+    {
+      "id": "PED002",
+      "cliente": {
+        "nome": "João Santos",
+        "email": "joao@email.com",
+        "telefone": "(11) 88888-8888",
+        "endereco": "Av. Paulista, 456 - São Paulo, SP"
+      },
+      "itens": [
+        {
+          "produto_id": 2,
+          "nome": "Calça Jeans Skinny",
+          "quantidade": 1,
+          "preco_unitario": 89.90,
+          "subtotal": 89.90
+        },
+        {
+          "produto_id": 3,
+          "nome": "Tênis Esportivo Unissex",
+          "quantidade": 1,
+          "preco_unitario": 159.90,
+          "subtotal": 159.90
+        }
+      ],
+      "total": 249.80,
+      "status": "enviado",
+      "forma_pagamento": "cartao",
+      "data_pedido": "2024-03-02T14:15:00",
+      "data_entrega": "2024-03-05"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Maria Silva",
+      "email": "maria@email.com",
+      "telefone": "(11) 99999-9999",
+      "endereco": "Rua das Flores, 123 - São Paulo, SP",
+      "data_cadastro": "2024-02-20",
+      "total_pedidos": 3,
+      "total_gasto": 189.70,
+      "status": "ativo"
+    },
+    {
+      "id": 2,
+      "nome": "João Santos",
+      "email": "joao@email.com",
+      "telefone": "(11) 88888-8888",
+      "endereco": "Av. Paulista, 456 - São Paulo, SP",
+      "data_cadastro": "2024-02-25",
+      "total_pedidos": 2,
+      "total_gasto": 339.70,
+      "status": "ativo"
+    },
+    {
+      "id": 3,
+      "nome": "Ana Costa",
+      "email": "ana@email.com",
+      "telefone": "(11) 77777-7777",
+      "endereco": "Rua Augusta, 789 - São Paulo, SP",
+      "data_cadastro": "2024-03-01",
+      "total_pedidos": 1,
+      "total_gasto": 79.90,
+      "status": "ativo"
+    }
+  ],
+  "vendas": {
+    "hoje": {
+      "total": 2450.80,
+      "quantidade": 15,
+      "ticket_medio": 163.39
+    },
+    "ontem": {
+      "total": 3120.50,
+      "quantidade": 22,
+      "ticket_medio": 141.84
+    },
+    "esta_semana": {
+      "total": 12340.20,
+      "quantidade": 89,
+      "ticket_medio": 138.66
+    },
+    "este_mes": {
+      "total": 45678.90,
+      "quantidade": 342,
+      "ticket_medio": 133.56
+    }
+  },
+  "configuracoes": {
+    "loja": {
+      "nome": "Moda Elegante",
+      "email": "contato@modaelegante.com.br",
+      "telefone": "(11) 99700-2031",
+      "endereco": "Rua da Moda, 100 - São Paulo, SP",
+      "cnpj": "12.345.678/0001-90"
+    },
+    "pagamento": {
+      "pix_ativo": true,
+      "cartao_ativo": true,
+      "boleto_ativo": true,
+      "frete_gratis_acima": 200.00
+    }
+  }
+}

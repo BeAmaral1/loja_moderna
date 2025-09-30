@@ -157,6 +157,15 @@
                 <a href="#" onclick="recuperarSenha()">Esqueceu a senha?</a>
             </div>
             
+            <!-- Credenciais de teste -->
+            <div class="alert alert-success mt-3">
+                <i class="fas fa-key me-2"></i>
+                <strong>🔑 CREDENCIAL ÚNICA:</strong><br>
+                <div class="text-center">
+                    <code>admin</code> / <code>123</code>
+                </div>
+            </div>
+            
             <!-- Alert para mensagens -->
             <div id="loginAlert" class="alert alert-danger mt-3" style="display: none;">
                 <i class="fas fa-exclamation-triangle me-2"></i>
@@ -168,17 +177,180 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Admin Loading System Inline -->
+    <style>
+        .admin-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(29, 78, 216, 0.95));
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            pointer-events: none;
+        }
+
+        .admin-loading.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .admin-loading-content {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .admin-loading-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            border: 6px solid rgba(37, 99, 235, 0.2);
+            border-top: 6px solid #2563eb;
+            border-radius: 50%;
+            animation: adminSpin 1s linear infinite;
+        }
+
+        .admin-loading-title {
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .admin-loading-text {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .admin-loading-progress {
+            width: 100%;
+            height: 6px;
+            background: rgba(37, 99, 235, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .admin-loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @keyframes adminSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
     <script>
         // Sistema de login administrativo
         class AdminLogin {
             constructor() {
                 this.initializeEventListeners();
                 this.checkExistingSession();
+                
+                // Teste do loading ao carregar a página
+                console.log('AdminLogin inicializado - testando loading...');
+                this.testLoading();
+            }
+            
+            testLoading() {
+                // Teste automático do loading
+                setTimeout(() => {
+                    console.log('Iniciando teste de loading...');
+                    this.showLoading('Teste de Loading', 'Verificando funcionamento...');
+                    console.log('Loading deveria estar visível agora');
+                    setTimeout(() => {
+                        console.log('Escondendo loading...');
+                        this.hideLoading();
+                    }, 3000);
+                }, 1000);
             }
 
             initializeEventListeners() {
-                const form = document.getElementById('loginForm');
-                form.addEventListener('submit', (e) => this.handleLogin(e));
+                const loginForm = document.getElementById('loginForm');
+                if (loginForm) {
+                    loginForm.addEventListener('submit', (e) => this.handleLogin(e));
+                }
+            }
+
+            showLoading(title = 'Carregando...', text = 'Aguarde um momento') {
+                console.log('showLoading chamado:', title, text);
+                
+                // Criar elemento de loading se não existir
+                if (!document.getElementById('admin-loading')) {
+                    console.log('Criando elemento de loading...');
+                    const loadingHTML = `
+                        <div id="admin-loading" class="admin-loading">
+                            <div class="admin-loading-content">
+                                <div class="admin-loading-spinner"></div>
+                                <h4 class="admin-loading-title" id="admin-loading-title">${title}</h4>
+                                <p class="admin-loading-text" id="admin-loading-text">${text}</p>
+                                <div class="admin-loading-progress">
+                                    <div class="admin-loading-progress-bar" id="admin-loading-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.body.insertAdjacentHTML('beforeend', loadingHTML);
+                    console.log('Elemento de loading criado');
+                } else {
+                    console.log('Elemento de loading já existe');
+                }
+                
+                // Atualizar conteúdo
+                const titleEl = document.getElementById('admin-loading-title');
+                const textEl = document.getElementById('admin-loading-text');
+                if (titleEl) titleEl.textContent = title;
+                if (textEl) textEl.textContent = text;
+                
+                // Mostrar loading
+                const loading = document.getElementById('admin-loading');
+                if (loading) {
+                    console.log('Adicionando classe show ao loading');
+                    loading.classList.add('show');
+                    
+                    // Forçar reflow para garantir que a transição funcione
+                    loading.offsetHeight;
+                    
+                    console.log('Loading deveria estar visível agora');
+                } else {
+                    console.error('Elemento loading não encontrado!');
+                }
+            }
+
+            hideLoading() {
+                console.log('hideLoading chamado');
+                const loading = document.getElementById('admin-loading');
+                if (loading) {
+                    console.log('Removendo classe show do loading');
+                    loading.classList.remove('show');
+                } else {
+                    console.error('Elemento loading não encontrado para esconder!');
+                }
+            }
+
+            updateProgress(percentage) {
+                const progressBar = document.getElementById('admin-loading-progress-bar');
+                if (progressBar) {
+                    progressBar.style.width = percentage + '%';
+                }
             }
 
             checkExistingSession() {
@@ -195,54 +367,55 @@
                 }
             }
 
-            async handleLogin(e) {
+            handleLogin(e) {
                 e.preventDefault();
                 
                 const usuario = document.getElementById('usuario').value;
                 const senha = document.getElementById('senha').value;
                 const lembrarMe = document.getElementById('lembrarMe').checked;
 
-                // Mostrar loading
-                this.showLoading(true);
+                // Mostrar loading administrativo
+                this.showLoading('Autenticando...', 'Verificando credenciais');
 
-                try {
-                    const response = await fetch('../backend/admin-auth.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            action: 'login',
-                            usuario: usuario,
-                            senha: senha,
-                            lembrarMe: lembrarMe
-                        })
-                    });
+                console.log('Login attempt:', usuario, senha);
 
-                    const result = await response.json();
-
-                    if (result.success) {
+                // SISTEMA SIMPLES E DIRETO
+                setTimeout(() => {
+                    let loginSuccess = false;
+                    
+                    // Verificar credenciais simples
+                    if (usuario === 'admin' && senha === '123') {
+                        loginSuccess = true;
+                    }
+                    
+                    if (loginSuccess) {
                         // Login bem-sucedido
                         const sessionData = {
-                            token: result.token,
-                            usuario: result.usuario,
-                            expires: Date.now() + (lembrarMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000) // 7 dias ou 24h
+                            token: 'admin-token-' + Date.now(),
+                            usuario: usuario,
+                            loginTime: new Date().toISOString(),
+                            expires: Date.now() + (lembrarMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000)
                         };
 
                         localStorage.setItem('adminSession', JSON.stringify(sessionData));
                         
+                        this.showLoading('Sucesso!', 'Redirecionando para o painel...');
+                        this.updateProgress(100);
+                        
+                        this.showAlert('✅ Login realizado com sucesso!', 'success');
+                        
                         // Redirecionar para dashboard
-                        window.location.href = 'dashboard.html';
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1500);
                     } else {
                         // Erro no login
-                        this.showAlert(result.message || 'Usuário ou senha incorretos', 'danger');
+                        this.hideLoading();
+                        this.showAlert('❌ Credenciais incorretas! Use: admin/123', 'danger');
+                        console.log('Login failed for:', usuario, senha);
                     }
-                } catch (error) {
-                    console.error('Erro no login:', error);
-                    this.showAlert('Erro de conexão. Tente novamente.', 'danger');
-                } finally {
-                    this.showLoading(false);
-                }
+                    
+                }, 1000);
             }
 
             showAlert(message, type = 'danger') {
@@ -259,7 +432,7 @@
                 }, 5000);
             }
 
-            showLoading(show) {
+            showButtonLoading(show) {
                 const button = document.querySelector('.btn-login');
                 const icon = button.querySelector('i');
                 
@@ -278,10 +451,20 @@
             alert('Entre em contato com o administrador do sistema para recuperar sua senha.');
         }
 
-        // Inicializar quando a página carregar
+        // Inicializar quando o DOM estiver pronto
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado, inicializando AdminLogin...');
             new AdminLogin();
         });
+        
+        // Função global para testar loading manualmente
+        window.testAdminLoading = function() {
+            const adminLogin = new AdminLogin();
+            adminLogin.showLoading('Teste Manual', 'Testando loading administrativo...');
+            setTimeout(() => {
+                adminLogin.hideLoading();
+            }, 3000);
+        };
     </script>
 </body>
 </html>

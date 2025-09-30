@@ -29,25 +29,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Inter for minimal design -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Minimal CSS -->
+    <link href="assets/css/minimal.css" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     
     <!-- White Label Configuration -->
     <script src="assets/js/config.js"></script>
+    
+    <!-- Loading System -->
+    <script src="assets/js/loading.js"></script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">
-                <i class="fas fa-gem me-2"></i>Moda Elegante
+                Moda Elegante
             </a>
             
             <div class="d-flex align-items-center d-lg-none">
@@ -106,51 +110,22 @@
                 <div class="col-lg-6">
                     <div class="hero-content">
                         <h1 class="display-4 fw-bold mb-4" data-text="hero-title">
-                            Coleção <span class="text-primary">Verão 2024</span>
+                            Moda Elegante
                         </h1>
                         <p class="lead mb-4 text-muted" data-text="hero-subtitle">
-                            Descubra as peças perfeitas para renovar seu guarda-roupa com elegância, 
-                            conforto e estilo único.
+                            Roupas essenciais com design atemporal
                         </p>
                         <div class="d-flex flex-wrap gap-3">
                             <a href="catalogo.html" class="btn btn-primary btn-lg px-4 py-3" data-text="hero-cta">
-                                <i class="fas fa-shopping-bag me-2"></i>Comprar Agora
-                            </a>
-                            <a href="#destaques" class="btn btn-outline-primary btn-lg px-4 py-3">
-                                Ver Produtos
+                                Ver Catálogo
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image">
-                        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
-                                         alt="Coleção Verão 2024" class="img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
-                                         alt="Moda Feminina" class="img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
-                                         alt="Moda Masculina" class="img-fluid">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
-                                         alt="Acessórios" class="img-fluid">
-                                </div>
-                            </div>
-                            <!-- Indicadores -->
-                            <div class="carousel-indicators m-0">
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                            </div>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" 
+                             alt="Moda Elegante" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -161,8 +136,7 @@
     <section id="destaques" class="py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3">Produtos em Destaque</h2>
-                <p class="lead text-muted">Peças selecionadas especialmente para você</p>
+                <h2 class="section-title">Produtos</h2>
             </div>
             
             <div class="row g-4" id="produtosDestaque">
@@ -171,8 +145,7 @@
             
             <div class="text-center mt-5">
                 <a href="catalogo.html" class="btn btn-primary btn-lg">
-                    Ver Todos os Produtos
-                    <i class="fas fa-arrow-right ms-2"></i>
+                    Ver Catálogo
                 </a>
             </div>
         </div>
@@ -182,8 +155,7 @@
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3">Nossas Categorias</h2>
-                <p class="lead text-muted">Encontre exatamente o que você procura</p>
+                <h2 class="section-title">Categorias</h2>
             </div>
             
             <div class="row g-4">
@@ -354,6 +326,9 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- Store Loading System -->
+    <script src="assets/js/store-loading.js"></script>
     
     <!-- Custom JS -->
     <script src="assets/js/products.js" defer></script>

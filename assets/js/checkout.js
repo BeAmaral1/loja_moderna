@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===== VERIFICAR SE HÁ ITENS NO CARRINHO =====
+    // Comentado para modo teste - permitir checkout mesmo com carrinho vazio
+    /*
     if (!carrinho || carrinho.carrinho.length === 0) {
         // Mostrar alerta e redirecionar após 3 segundos
         mostrarAlerta('Seu carrinho está vazio! Redirecionando para o catálogo...', 'warning');
@@ -25,10 +27,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
         return;
     }
+    */
 
     // ===== RENDERIZAR RESUMO DO PEDIDO =====
     function renderizarResumo() {
-        const itens = carrinho.carrinho;
+        const itens = carrinho && carrinho.carrinho ? carrinho.carrinho : [];
+        
+        if (itens.length === 0) {
+            orderItems.innerHTML = `
+                <div class="text-center py-4 text-muted">
+                    <i class="fas fa-info-circle fa-2x mb-2"></i>
+                    <p>Modo teste - Carrinho simulado</p>
+                </div>
+            `;
+            
+            // Valores simulados para teste
+            if (subtotalElement) subtotalElement.textContent = 'R$ 150,00';
+            if (freteElement) freteElement.textContent = 'R$ 15,90';
+            if (totalElement) totalElement.textContent = 'R$ 165,90';
+            return;
+        }
         
         orderItems.innerHTML = itens.map(item => `
             <div class="order-item d-flex align-items-center mb-3">

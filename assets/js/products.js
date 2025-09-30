@@ -175,35 +175,84 @@ function gerarEstrelas(rating) {
 
 // ===== RENDERIZAÇÃO DE PRODUTOS =====
 function renderizarProduto(produto) {
+    const desconto = produto.precoOriginal ? Math.round(((produto.precoOriginal - produto.preco) / produto.precoOriginal) * 100) : 0;
+    
     return `
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="product-card">
+            <div class="product-card enhanced-card" data-product-id="${produto.id}">
                 ${produto.badge ? `<div class="product-badge">${produto.badge}</div>` : ''}
-                <div class="product-image">
-                    <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
+                ${desconto > 0 ? `<div class="discount-badge">-${desconto}%</div>` : ''}
+                
+                <div class="product-image-container">
+                    <div class="product-image">
+                        <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy" class="main-image">
+                        ${produto.imagens && produto.imagens.length > 1 ? `<img src="${produto.imagens[1]}" alt="${produto.nome}" loading="lazy" class="hover-image">` : ''}
+                    </div>
+                    <div class="product-overlay">
+                        <div class="overlay-actions">
+                            <button class="overlay-btn" onclick="visualizarRapido(${produto.id})" title="Visualização Rápida">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="overlay-btn" onclick="adicionarFavoritos(${produto.id})" title="Adicionar aos Favoritos">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="overlay-btn" onclick="compartilhar(${produto.id})" title="Compartilhar">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="product-info">
                     <div class="product-content">
+                        <div class="product-category">${produto.categoria.toUpperCase()}</div>
                         <h3 class="product-title">${produto.nome}</h3>
-                        <div class="product-price">
-                            ${formatarPreco(produto.preco)}
-                            ${produto.precoOriginal ? `<span class="product-price-original">${formatarPreco(produto.precoOriginal)}</span>` : ''}
+                        <p class="product-description">${produto.descricao.substring(0, 80)}...</p>
+                        
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <i class="fas fa-palette"></i>
+                                <span>${produto.cores.length} cores</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-ruler"></i>
+                                <span>${produto.tamanhos.length} tamanhos</span>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        
+                        <div class="product-rating">
                             <div class="stars text-warning">
                                 ${gerarEstrelas(produto.rating)}
                             </div>
-                            <small class="text-muted">(${produto.reviews})</small>
+                            <span class="rating-text">${produto.rating} (${produto.reviews} avaliações)</span>
+                        </div>
+                        
+                        <div class="product-price">
+                            <span class="current-price">${formatarPreco(produto.preco)}</span>
+                            ${produto.precoOriginal ? `<span class="original-price">${formatarPreco(produto.precoOriginal)}</span>` : ''}
                         </div>
                     </div>
+                    
                     <div class="product-actions">
+                        <div class="size-selector mb-2">
+                            <select class="form-select form-select-sm" id="size-${produto.id}">
+                                <option value="">Selecione o tamanho</option>
+                                ${produto.tamanhos.map(tamanho => `<option value="${tamanho}">${tamanho}</option>`).join('')}
+                            </select>
+                        </div>
+                        
                         <div class="d-grid gap-2">
-                            <button class="btn-add-cart" onclick="adicionarAoCarrinho(${produto.id})">
-                                <i class="fas fa-shopping-bag me-2"></i>Adicionar
+                            <button class="btn-add-cart enhanced" onclick="adicionarAoCarrinhoComTamanho(${produto.id})">
+                                <i class="fas fa-shopping-bag me-2"></i>Adicionar ao Carrinho
                             </button>
-                            <a href="produto.html?id=${produto.id}" class="btn btn-outline-primary btn-sm">
-                                Ver Detalhes
-                            </a>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm flex-fill" onclick="verDetalhes(${produto.id})">
+                                    <i class="fas fa-info-circle me-1"></i>Ver Detalhes
+                                </button>
+                                <button class="btn btn-outline-success btn-sm" onclick="comprarAgora(${produto.id})">
+                                    <i class="fas fa-bolt"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -256,6 +305,137 @@ function buscarProdutos(termo) {
 // ===== OBTER PRODUTO POR ID =====
 function obterProdutoPorId(id) {
     return produtos.find(produto => produto.id === parseInt(id));
+}
+
+// ===== FUNCIONALIDADES AVANÇADAS DOS CARDS =====
+function visualizarRapido(produtoId) {
+    const produto = obterProdutoPorId(produtoId);
+    if (!produto) return;
+    
+    showLoading('Carregando visualização...');
+    
+    setTimeout(() => {
+        hideLoading();
+        const modal = criarModalVisualizacao(produto);
+        document.body.appendChild(modal);
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+        
+        modal.addEventListener('hidden.bs.modal', () => {
+            modal.remove();
+        });
+    }, 800);
+}
+
+function criarModalVisualizacao(produto) {
+    const modal = document.createElement('div');
+    modal.className = 'modal fade';
+    modal.innerHTML = `
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Visualização Rápida</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="product-gallery">
+                                <img src="${produto.imagem}" alt="${produto.nome}" class="img-fluid rounded">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>${produto.nome}</h4>
+                            <p class="text-muted">${produto.descricao}</p>
+                            <div class="mb-3">
+                                <div class="stars text-warning mb-2">
+                                    ${gerarEstrelas(produto.rating)}
+                                </div>
+                                <span class="text-muted">${produto.rating} (${produto.reviews} avaliações)</span>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="text-primary">${formatarPreco(produto.preco)}</h5>
+                                ${produto.precoOriginal ? `<small class="text-muted text-decoration-line-through">${formatarPreco(produto.precoOriginal)}</small>` : ''}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Tamanhos disponíveis:</strong><br>
+                                ${produto.tamanhos.map(t => `<span class="badge bg-light text-dark me-1">${t}</span>`).join('')}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Cores disponíveis:</strong><br>
+                                ${produto.cores.map(c => `<span class="badge bg-secondary me-1">${c}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" onclick="adicionarAoCarrinho(${produto.id}); bootstrap.Modal.getInstance(this.closest('.modal')).hide();">
+                        <i class="fas fa-shopping-bag me-2"></i>Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    return modal;
+}
+
+function adicionarFavoritos(produtoId) {
+    showLoading('Adicionando aos favoritos...');
+    setTimeout(() => {
+        hideLoading();
+        // Simulação - em produção seria salvo no localStorage ou backend
+        alert('Produto adicionado aos favoritos! (Funcionalidade de teste)');
+    }, 500);
+}
+
+function compartilhar(produtoId) {
+    const produto = obterProdutoPorId(produtoId);
+    if (navigator.share) {
+        navigator.share({
+            title: produto.nome,
+            text: produto.descricao,
+            url: `${window.location.origin}/produto.html?id=${produtoId}`
+        });
+    } else {
+        // Fallback para navegadores sem suporte
+        const url = `${window.location.origin}/produto.html?id=${produtoId}`;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Link copiado para a área de transferência!');
+        });
+    }
+}
+
+function adicionarAoCarrinhoComTamanho(produtoId) {
+    const sizeSelect = document.getElementById(`size-${produtoId}`);
+    if (!sizeSelect.value) {
+        alert('Por favor, selecione um tamanho antes de adicionar ao carrinho.');
+        sizeSelect.focus();
+        return;
+    }
+    
+    showLoading('Adicionando ao carrinho...');
+    setTimeout(() => {
+        hideLoading();
+        adicionarAoCarrinho(produtoId, sizeSelect.value);
+    }, 600);
+}
+
+function verDetalhes(produtoId) {
+    showLoading('Carregando detalhes...');
+    setTimeout(() => {
+        hideLoading();
+        // Em um ambiente real, redirecionaria para a página de detalhes
+        alert(`Redirecionando para detalhes do produto ${produtoId}... (Funcionalidade de teste)`);
+    }, 800);
+}
+
+function comprarAgora(produtoId) {
+    showLoading('Processando compra rápida...');
+    setTimeout(() => {
+        hideLoading();
+        alert(`Compra rápida do produto ${produtoId}! (Funcionalidade de teste)`);
+    }, 1000);
 }
 
 // ===== INICIALIZAÇÃO =====

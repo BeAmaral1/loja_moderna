@@ -314,10 +314,8 @@ class AsaasPayment {
     }
 
     mostrarLoading(mostrar) {
-        const loading = document.getElementById('paymentLoading');
-        if (loading) {
-            loading.style.display = mostrar ? 'flex' : 'none';
-        }
+        // Loading removido - usando apenas o sistema de loading da loja
+        console.log('Loading de pagamento:', mostrar ? 'mostrar' : 'ocultar');
     }
 
     mostrarErro(mensagem) {

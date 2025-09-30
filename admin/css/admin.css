@@ -41,6 +41,14 @@ body {
 
 .sidebar-menu {
     padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .sidebar-menu .nav-link {
